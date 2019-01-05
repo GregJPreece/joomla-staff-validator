@@ -14,4 +14,4 @@ After the containers have started, you can access the Joomla development site at
 
 **Note:** You may find that you receive a permissions error when installing. This is because Docker mounts the code in as your host user, not as something the web root can read. If this happens, use `docker exec` to run a bash terminal inside the container, give the folder the same group ownership as the web server, and give that group write permissions. Installation should then work correctly. I will attempt to make this process more automatic in a future revision, but for now you can jump through some hoops.
 
-You are now ready to proceed with development. All file changes will be automatically synchronised into the Joola box.
+You are now ready to proceed with development. All file changes will be automatically synchronised into the Joomla box.
