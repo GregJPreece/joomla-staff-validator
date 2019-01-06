@@ -9,7 +9,7 @@ services:
     ports:
       - 8080:80
     volumes:
-     - ./src:/var/www/html/components/com_staffvalidator
+     - ./src:/home/com_staffvalidator
     environment:
       JOOMLA_DB_HOST: joomladb
       JOOMLA_DB_PASSWORD: devdbpassword
@@ -17,5 +17,7 @@ services:
   joomladb:
     image: mysql:5.6
     restart: always
+    ports:
+      - 3030:3306
     environment:
       MYSQL_ROOT_PASSWORD: devdbpassword

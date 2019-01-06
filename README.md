@@ -10,7 +10,7 @@ This Joomla extension uses a Docker-based Joomla environment for testing. To ins
 
 After the containers have started, you can access the Joomla development site at http://localhost:8080. The first time you start the container, you will have to set up Joomla. Once you can configured Joomla and are logged in as the administrator account, go to the Extensions manager and install the development extension from its folder:
 
-`/var/www/html/components/com_staffvalidator`
+`/home/com_staffvalidator`
 
 **Note:** You may find that you receive a permissions error when installing. This is because Docker mounts the code in as your host user, not as something the web root can read. If this happens, use `docker exec` to run a bash terminal inside the container, give the folder the same group ownership as the web server, and give that group write permissions. Installation should then work correctly. I will attempt to make this process more automatic in a future revision, but for now you can jump through some hoops.
 
