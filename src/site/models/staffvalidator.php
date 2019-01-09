@@ -18,37 +18,37 @@ defined('_JEXEC') or die('Restricted access');
  */
 class StaffValidatorModelStaffValidator extends JModelItem {
 
-	/**
-	 * @var string message
-	 */
-	protected $message;
+    /**
+     * @var string message
+     */
+    protected $message;
 
-	/**
-	 * Get the message
+    /**
+     * Get the message
          *
-	 * @return  string  The message to be displayed to the user
-	 */
-	public function getMsg() {
+     * @return  string  The message to be displayed to the user
+     */
+    public function getMsg() {
 
-		if (!isset($this->message)){
+        if (!isset($this->message)){
 
-			$jinput = JFactory::getApplication()->input;
-			$id     = $jinput->get('id', 1, 'INT');
+            $jinput = JFactory::getApplication()->input;
+            $id     = $jinput->get('id', 1, 'INT');
 
-			switch ($id) {
-			
-				case 2:
-					$this->message = 'Good bye World!';
-					break;
-				default:
-				case 1:
-					$this->message = 'Hello World!';
-					break;
-			}
+            switch ($id) {
+            
+                case 2:
+                    $this->message = 'Good bye World!';
+                    break;
+                default:
+                case 1:
+                    $this->message = 'Hello World!';
+                    break;
+            }
 
-		}
+        }
 
-		return $this->message;
-	}
+        return $this->message;
+    }
 
 }

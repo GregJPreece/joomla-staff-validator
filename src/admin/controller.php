@@ -19,11 +19,11 @@ defined('_JEXEC') or die('Restricted access');
  * @since       0.0.7
  */
 class StaffValidatorController extends JControllerLegacy {
-	/**
-	 * The default view for the display method.
-	 *
-	 * @var string
-	 * @since 12.2
-	 */
-	protected $default_view = 'staffvalidator';
+    /**
+     * The default view for the display method.
+     *
+     * @var string
+     * @since 12.2
+     */
+    protected $default_view = 'staffvalidator';
 }
