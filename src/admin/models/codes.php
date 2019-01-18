@@ -10,15 +10,13 @@
 
  /**
  * Staff Validator code list Model
- *
- * @since  0.0.1
  */
-class StaffValidatorModelStaffValidator extends JModelList
+class StaffValidatorModelCodes extends JModelList
 {
     /**
      * Method to build an SQL query to load the list data.
      *
-     * @return      string  An SQL query
+     * @return string An SQL query
      */
     protected function getListQuery()
     {

@@ -13,16 +13,13 @@ defined('_JEXEC') or die('Restricted access');
 
 /**
  * Main Staff Validator Admin View
- *
- * @since  0.0.10
  */
-class StaffValidatorViewStaffValidator extends JViewLegacy {
+class StaffValidatorViewCodes extends JViewLegacy {
     
     /**
      * Display the main Staff Validator view
      *
      * @param   string  $tpl  The name of the template file to parse; automatically searches through the template paths.
-     *
      * @return  void
      */
     function display($tpl = null) {
@@ -48,9 +45,9 @@ class StaffValidatorViewStaffValidator extends JViewLegacy {
 
     protected function addToolbar() {
         JToolbarHelper::title(JText::_('COM_STAFFVALIDATOR_MANAGER_TITLE'));
-        JToolbarHelper::addNew('staffvalidator.add');
-        JToolbarHelper::editList('staffvalidator.edit');
-        JToolbarHelper::deleteList('', 'staffvalidator.delete');
+        JToolbarHelper::addNew('codes.add');
+        JToolbarHelper::editList('codes.edit');
+        JToolbarHelper::deleteList('', 'codes.delete');
     }
 
 }

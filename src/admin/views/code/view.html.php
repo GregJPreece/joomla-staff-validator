@@ -52,7 +52,7 @@ class StaffValidatorViewCode extends JViewLegacy {
         JToolbarHelper::title($title, 'code');
         JToolbarHelper::save('code.save');
         JToolbarHelper::cancel(
-            'staffvalidator',
+            'codes',
             $isNew ? 'JTOOLBAR_CANCEL' : 'JTOOLBAR_CLOSE'
         );
 

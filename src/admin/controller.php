@@ -16,14 +16,12 @@ defined('_JEXEC') or die('Restricted access');
  *
  * @package     Joomla.Administrator
  * @subpackage  com_staffvalidator
- * @since       0.0.7
  */
 class StaffValidatorController extends JControllerLegacy {
     /**
      * The default view for the display method.
      *
      * @var string
-     * @since 12.2
      */
-    protected $default_view = 'staffvalidator';
+    protected $default_view = 'codes';
 }
