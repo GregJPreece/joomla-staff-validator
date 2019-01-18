@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<form>
+    <fieldset>
+        <field name="id" type="hidden" />
+        <field name="note" 
+               type="textarea"
+               label="COM_STAFFVALIDATOR_FIELD_CODE_NOTE_LABEL"
+               description="COM_STAFFVALIDATOR_FIELD_CODE_NOTE_DESC"
+               hint="COM_STAFFVALIDATOR_FIELD_CODE_NOTE_DESC" />
+    </fieldset>
+</form>

@@ -8,22 +8,14 @@
  * @license     GNU General Public License version 3; see LICENSE
  */
 
- // No direct access to this file
+// No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
 /**
- * General Controller of StaffValidator component
+ * Staff Validator Code Controller
  *
  * @package     Joomla.Administrator
  * @subpackage  com_staffvalidator
- * @since       0.0.7
+ * @since       0.0.9
  */
-class StaffValidatorController extends JControllerLegacy {
-    /**
-     * The default view for the display method.
-     *
-     * @var string
-     * @since 12.2
-     */
-    protected $default_view = 'staffvalidator';
-}
+class StaffValidatorControllerCode extends JControllerForm {}

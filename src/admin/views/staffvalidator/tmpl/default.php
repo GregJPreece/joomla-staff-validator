@@ -15,51 +15,63 @@ defined('_JEXEC') or die('Restricted Access');
     <table class="table table-striped table-hover">
         <thead>
         <tr>
-            <th width="1%"><?php echo JText::_('COM_STAFFVALIDATOR_NUM'); ?></th>
+            <th width="1%"><?= JText::_('COM_STAFFVALIDATOR_NUM'); ?></th>
             <th width="2%">
-                <?php echo JHtml::_('grid.checkall'); ?>
+                <?= JHtml::_('grid.checkall'); ?>
             </th>
-            <th width="90%">
-                <?php echo JText::_('COM_STAFFVALIDATOR_VALIDATOR_NAME') ;?>
+            <th>
+                <?= JText::_('COM_STAFFVALIDATOR_FIELD_CODE_ID_LABEL'); ?>
             </th>
-            <th width="5%">
-                <?php echo JText::_('COM_STAFFVALIDATOR_PUBLISHED'); ?>
+            <th>
+                <?= JText::_('COM_STAFFVALIDATOR_FIELD_CODE_USER_LABEL'); ?>
             </th>
-            <th width="2%">
-                <?php echo JText::_('COM_STAFFVALIDATOR_ID'); ?>
+            <th>
+                <?= JText::_('COM_STAFFVALIDATOR_FIELD_CODE_VALUE_LABEL') ;?>
+            </th>
+            <th>
+                <?= JText::_('COM_STAFFVALIDATOR_FIELD_CODE_TIME_EXPIRES_LABEL'); ?>
             </th>
         </tr>
         </thead>
         <tfoot>
             <tr>
                 <td colspan="5">
-                    <?php echo $this->pagination->getListFooter(); ?>
+                    <?= $this->pagination->getListFooter(); ?>
                 </td>
             </tr>
         </tfoot>
         <tbody>
             <?php if (!empty($this->items)) : ?>
-                <?php foreach ($this->items as $i => $row) : ?>
-
+                <?php foreach ($this->items as $i => $row) : 
+                    $link = JRoute::_('index.php?option=com_staffvalidator&task=code.edit&id=' . $row->id);    
+                ?>
                     <tr>
                         <td>
-                            <?php echo $this->pagination->getRowOffset($i); ?>
+                            <?= $this->pagination->getRowOffset($i); ?>
                         </td>
                         <td>
-                            <?php echo JHtml::_('grid.id', $i, $row->id); ?>
+                            <?= JHtml::_('grid.id', $i, $row->id); ?>
                         </td>
                         <td>
-                            <?php echo $row->greeting; ?>
+                            <a href="<?= $link ?>" title="<?= JText::_('COM_STAFFVALIDATOR_MANAGER_LIST_CODE_EDIT'); ?>">
+                                <?= $row->id; ?>
+                            </a>
                         </td>
-                        <td align="center">
-                            <?php echo JHtml::_('jgrid.published', $row->published, $i, 'staffvalidator.', true, 'cb'); ?>
+                        <td><?= $row->user_id; ?></td>
+                        <td>
+                            <a href="<?= $link ?>" title="<?= JText::_('COM_STAFFVALIDATOR_MANAGER_LIST_CODE_EDIT'); ?>">
+                                <?= $row->code; ?>
+                            </a>
                         </td>
-                        <td align="center">
-                            <?php echo $row->id; ?>
+                        <td>
+                            <?= $row->time_expires; ?>
                         </td>
                     </tr>
                 <?php endforeach; ?>
             <?php endif; ?>
         </tbody>
     </table>
+    <input type="hidden" name="task" value="" />
+    <input type="hidden" name="boxchecked" value="0" />
+    <?= JHtml::_('form.token'); ?>
 </form>

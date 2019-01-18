@@ -16,8 +16,8 @@ defined('_JEXEC') or die('Restricted access');
  *
  * @since  0.0.10
  */
-class StaffValidatorViewStaffValidator extends JViewLegacy
-{
+class StaffValidatorViewStaffValidator extends JViewLegacy {
+    
     /**
      * Display the main Staff Validator view
      *
@@ -25,8 +25,8 @@ class StaffValidatorViewStaffValidator extends JViewLegacy
      *
      * @return  void
      */
-    function display($tpl = null)
-    {
+    function display($tpl = null) {
+
         // Get data from the model
         $this->items      = $this->get('Items');
         $this->pagination = $this->get('Pagination');
@@ -39,7 +39,18 @@ class StaffValidatorViewStaffValidator extends JViewLegacy
             return false;
         }
 
+        // Add the standard toolbar
+        $this->addToolbar();
+
         // Display the template
         parent::display($tpl);
     }
+
+    protected function addToolbar() {
+        JToolbarHelper::title(JText::_('COM_STAFFVALIDATOR_MANAGER_TITLE'));
+        JToolbarHelper::addNew('staffvalidator.add');
+        JToolbarHelper::editList('staffvalidator.edit');
+        JToolbarHelper::deleteList('', 'staffvalidator.delete');
+    }
+
 }
