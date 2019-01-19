@@ -43,7 +43,8 @@ defined('_JEXEC') or die('Restricted Access');
         <tbody>
             <?php if (!empty($this->items)) : ?>
                 <?php foreach ($this->items as $i => $row) : 
-                    $link = JRoute::_('index.php?option=com_staffvalidator&task=code.edit&id=' . $row->id);    
+                    $link = JRoute::_('index.php?option=com_staffvalidator&task=code.edit&id=' . $row->id);
+                    $timezone = JFactory::getUser()->getTimezone();;
                 ?>
                     <tr>
                         <td>
@@ -64,7 +65,7 @@ defined('_JEXEC') or die('Restricted Access');
                             </a>
                         </td>
                         <td>
-                            <?= $row->time_expires; ?>
+                            <?= new JDate($row->time_expires, $timezone); ?>
                         </td>
                     </tr>
                 <?php endforeach; ?>
