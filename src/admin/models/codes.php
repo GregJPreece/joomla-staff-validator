@@ -11,8 +11,16 @@
  /**
  * Staff Validator code list Model
  */
-class StaffValidatorModelCodes extends JModelList
-{
+class StaffValidatorModelCodes extends JModelList {
+
+    public function __construct($config = []) {
+        $config['filter_fields'] = [
+            'time_expires',
+            'code'
+        ];
+        parent::__construct($config);
+    }
+
     /**
      * Method to build an SQL query to load the list data.
      *
@@ -28,6 +36,16 @@ class StaffValidatorModelCodes extends JModelList
         $query->select('*')
                 ->from($db->quoteName('#__staffvalidator_codes'));
 
+        $query->order(
+            $db->escape($this->getState('list.ordering', 'time_expires'))
+            . ' ' .
+            $db->escape($this->getState('list.direction', 'DESC'))
+        );
+
         return $query;
+    }
+
+    protected function populateState($ordering = 'time_expires', $direction = 'DESC') {
+        parent::populateState($ordering, $direction);
     }
 }

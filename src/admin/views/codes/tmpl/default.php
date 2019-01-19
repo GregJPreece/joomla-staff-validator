@@ -12,7 +12,12 @@
 defined('_JEXEC') or die('Restricted Access');
 ?>
 <form action="index.php?option=com_staffvalidator&view=codes" method="post" id="adminForm" name="adminForm">
-    <table class="table table-striped table-hover">
+    <?= JHtml::_('form.token'); ?>
+    <input type="hidden" name="task" value="" />
+    <input type="hidden" name="boxchecked" value="0" />
+    <input type="hidden" name="filter_order" value="<?= $this->sortColumn; ?>" />
+    <input type="hidden" name="filter_order_Dir" value="<?= $this->sortDirection; ?>" />
+    <table class="table table-striped table-hover sortable">
         <thead>
         <tr>
             <th width="1%"><?= JText::_('COM_STAFFVALIDATOR_NUM'); ?></th>
@@ -26,10 +31,22 @@ defined('_JEXEC') or die('Restricted Access');
                 <?= JText::_('COM_STAFFVALIDATOR_FIELD_CODE_USER_LABEL'); ?>
             </th>
             <th>
-                <?= JText::_('COM_STAFFVALIDATOR_FIELD_CODE_VALUE_LABEL') ;?>
+                <?= JHTML::_(
+                    'grid.sort',
+                    JText::_('COM_STAFFVALIDATOR_FIELD_CODE_VALUE_LABEL'),
+                    'code',
+                    $this->sortDirection,
+                    $this->sortColumn
+                ); ?>
             </th>
             <th>
-                <?= JText::_('COM_STAFFVALIDATOR_FIELD_CODE_TIME_EXPIRES_LABEL'); ?>
+                <?= JHTML::_(
+                    'grid.sort',
+                    JText::_('COM_STAFFVALIDATOR_FIELD_CODE_TIME_EXPIRES_LABEL'),
+                    'time_expires',
+                    $this->sortDirection,
+                    $this->sortColumn
+                ); ?>
             </th>
         </tr>
         </thead>
@@ -72,7 +89,4 @@ defined('_JEXEC') or die('Restricted Access');
             <?php endif; ?>
         </tbody>
     </table>
-    <input type="hidden" name="task" value="" />
-    <input type="hidden" name="boxchecked" value="0" />
-    <?= JHtml::_('form.token'); ?>
 </form>

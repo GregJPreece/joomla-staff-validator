@@ -24,9 +24,13 @@ class StaffValidatorViewCodes extends JViewLegacy {
      */
     function display($tpl = null) {
 
-        // Get data from the model
+        $state = $this->get('State');
+
+        // Get data from the model/state
         $this->items      = $this->get('Items');
         $this->pagination = $this->get('Pagination');
+        $this->sortColumn = $state->get('list.ordering');
+        $this->sortDirection = $state->get('list.direction');
 
         // Check for errors.
         if (count($errors = $this->get('Errors')))
@@ -36,18 +40,27 @@ class StaffValidatorViewCodes extends JViewLegacy {
             return false;
         }
 
-        // Add the standard toolbar
+        // Set up the document
         $this->addToolbar();
+        $this->setupDocument();
 
         // Display the template
         parent::display($tpl);
     }
 
-    protected function addToolbar() {
-        JToolbarHelper::title(JText::_('COM_STAFFVALIDATOR_MANAGER_TITLE'));
-        JToolbarHelper::addNew('codes.add');
-        JToolbarHelper::editList('codes.edit');
+    protected function addToolbar(): void {
+        $title = JText::_('COM_STAFFVALIDATOR_MANAGER_TITLE');
+        $title .= ($this->pagination->total) ? ' (<span class="list-count">' . $this->pagination->total . '</span>)' : '';
+
+        JToolbarHelper::title($title);
+        JToolbarHelper::addNew('code.add');
+        JToolbarHelper::editList('code.edit');
         JToolbarHelper::deleteList('', 'codes.delete');
+    }
+
+    protected function setupDocument(): void {
+        $document = JFactory::getDocument();
+        $document->setTitle(JText::_('COM_STAFFVALIDATOR_MANAGER_TITLE'));
     }
 
 }
