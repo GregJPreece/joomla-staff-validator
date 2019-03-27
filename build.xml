@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model xlink:href="https://raw.githubusercontent.com/phingofficial/phing/master/etc/phing-grammar.rng" 
+            type="application/xml" 
+            schematypens="http://relaxng.org/ns/structure/1.0" ?>
+
+<project name="Joomla Staff Validator" default="hello">
+    <target name="hello">
+        <echo>Test successful!</echo>
+    </target>    
+</project>

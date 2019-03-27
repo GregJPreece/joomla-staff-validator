@@ -8,7 +8,7 @@ This Joomla extension uses the [JoomlaTools Vagrant Box](https://www.joomlatools
 
 This box uses NFS for its file synchronisation outside the box. Ensure that you have the required NFS tools installed before building the box. On Ubuntu, this is as simple as:
 
-`sudo apt install nfs-kernel-server`
+`sudo apt-get install nfs-kernel-server`
 
 Once you have done this, you can run `vagrant up` to build the box. **ON FIRST RUN:** Run this command from the command line and not from your IDE, as you will be required to enter your sudo/admin password for Vagrant to set up the NFS shares. You will also need to do this if you run `vagrant destroy`.
 

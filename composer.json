@@ -1,0 +1,31 @@
+{
+    "name": "GregJPreece/joomla-staff-validator",
+    "description": "Joomla extension to help site members validate their identity to squishy humans.",
+    "keywords": [
+        "joomla",
+        "joomla3",
+        "identity",
+        "validator",
+        "validation"
+    ],
+    "license": "GPL-3.0-only",
+    "authors": [
+        {
+            "name": "Greg J Preece",
+            "email": "greg@preece.ca",
+            "homepage": "https://preece.ca",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/GregJPreece/joomla-staff-validator/issues",
+        "source": "https://github.com/GregJPreece/joomla-staff-validator"
+    },
+    "minimum-stability": "stable",
+    "require": {
+        
+    },
+    "require-dev": {
+        "phing/phing": "^2.16"
+    }
+}
