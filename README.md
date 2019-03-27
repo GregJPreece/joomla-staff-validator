@@ -4,7 +4,7 @@ Joomla component to allow site members (staffers) to validate their identities w
 
 # Running Development Environment
 
-This Joomla extension uses the [https://www.joomlatools.com/developer/tools/vagrant/](JoomlaTools Vagrant Box) for local development and testing.
+This Joomla extension uses the [JoomlaTools Vagrant Box](https://www.joomlatools.com/developer/tools/vagrant/) for local development and testing.
 
 This box uses NFS for its file synchronisation outside the box. Ensure that you have the required NFS tools installed before building the box. On Ubuntu, this is as simple as:
 
