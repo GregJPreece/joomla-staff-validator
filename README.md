@@ -4,14 +4,16 @@ Joomla component to allow site members (staffers) to validate their identities w
 
 # Running Development Environment
 
-This Joomla extension uses a Docker-based Joomla environment for testing. To instantiate an environment after checkout, ensure you have recent versions of Docker and Docker-Compose installed, then run:
+This Joomla extension uses the [https://www.joomlatools.com/developer/tools/vagrant/](JoomlaTools Vagrant Box) for local development and testing.
 
-`docker-compose up`
+This box uses NFS for its file synchronisation outside the box. Ensure that you have the required NFS tools installed before building the box. On Ubuntu, this is as simple as:
 
-After the containers have started, you can access the Joomla development site at http://localhost:8080. The first time you start the container, you will have to set up Joomla. Once you can configured Joomla and are logged in as the administrator account, go to the Extensions manager and install the development extension from its folder:
+`sudo apt install nfs-kernel-server`
 
-`/home/com_staffvalidator`
+Once you have done this, you can run `vagrant up` to build the box. **ON FIRST RUN:** Run this command from the command line and not from your IDE, as you will be required to enter your sudo/admin password for Vagrant to set up the NFS shares. You will also need to do this if you run `vagrant destroy`.
 
-**Note:** You may find that you receive a permissions error when installing. This is because Docker mounts the code in as your host user, not as something the web root can read. If this happens, use `docker exec` to run a bash terminal inside the container, give the folder the same group ownership as the web server, and give that group write permissions. Installation should then work correctly. I will attempt to make this process more automatic in a future revision, but for now you can jump through some hoops.
+The JoomlaTools box uses fixed-IP private networking to expose its various domains. Once the Vagrant box has finished building, add the following line to your hosts file (on Linux this is usually at `/etc/hosts`):
 
-You are now ready to proceed with development. All file changes will be automatically synchronised into the Joomla box.
+`33.33.33.58 joomla.box webgrind.joomla.box phpmyadmin.joomla.box`
+
+You should now be able to view the box's control panel at http://joomla.box
