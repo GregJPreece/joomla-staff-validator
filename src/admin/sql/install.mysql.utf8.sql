@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS `#_staffvalidator_codes` (
+CREATE TABLE IF NOT EXISTS `#__staffvalidator_codes` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `user_id` INT NOT NULL,
   `code` VARCHAR(10) NOT NULL,
@@ -7,9 +7,9 @@ CREATE TABLE IF NOT EXISTS `#_staffvalidator_codes` (
   `note` TEXT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `code_UNIQUE` (`code` ASC),
-  CONSTRAINT `fk_#_staffvalidator_codes_user_id`
+  CONSTRAINT `fk___codes_user_id`
     FOREIGN KEY (user_id)
-    REFERENCES `#_users` (id)
+    REFERENCES `#__users` (id)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
 )
