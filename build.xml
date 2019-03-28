@@ -1,10 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model xlink:href="https://raw.githubusercontent.com/phingofficial/phing/master/etc/phing-grammar.rng" 
-            type="application/xml" 
-            schematypens="http://relaxng.org/ns/structure/1.0" ?>
+<!-- 
 
-<project name="Joomla Staff Validator" default="hello">
-    <target name="hello">
-        <echo>Test successful!</echo>
-    </target>    
+Phing build file for Joomla Staff Validator
+Author: Greg J Preece <greg@preece.ca>
+Created: 2019-03-27
+
+-->
+<!-- TODO: Sort out a better location to host this XSD -->
+<?xml-model xlink:href="https://gist.githubusercontent.com/GregJPreece/984f9d3b02d4fea043f0be2d11249614/raw/5a597eddd5d85d538f70d0579ee6b7855a5faf4b/phing-schema.2.16.1.xsd" 
+            type="application/xml" 
+            schematypens="http://www.w3.org/2001/XMLSchema" ?>
+
+<project name="Joomla Staff Validator" default="build-for-vagrant">
+    <target name="check-vagrant">
+        <echo>Checking Joomlatools box has been built</echo>
+        <available file="./Projects" type="dir" property="vagrant.projects" />
+        <available file="./www" type="dir" property="vagrant.www" />
+        
+        <fail message="Vagrant box has not yet been built, cannot install to it">
+            <condition>
+                <or>
+                    <not>
+                        <isset property="vagrant.www" />
+                    </not>
+                    <not>
+                        <isset property="vagrant.projects" />
+                    </not>
+                </or>
+            </condition>
+        </fail>
+    </target>
+    
+    <target name="clean-distribution">
+        <echo>Cleaning distribution folder...</echo>
+        <delete includeemptydirs="true" dir="dist" />
+    </target>
+    
+    <target name="clean-vagrant" depends="check-vagrant">
+        <echo>Cleaning Vagrant symlink folder...</echo>
+        <delete includeemptydirs="true" dir="Projects/staffvalidator" />
+    </target>
+
+    <target name="init-distribution" depends="clean-distribution">
+        <echo>Initialising distribution folder structure...</echo>
+        <mkdir dir="dist" />
+        <mkdir dir="dist/src" />
+        <mkdir dir="dist/bin" />
+    </target>
+    
+    <target name="init-vagrant" depends="clean-vagrant">
+        <echo>Initialising Vagrant symlink folder structure...</echo>
+        <mkdir dir="Projects/staffvalidator/administrator/components/com_staffvalidator" />
+        <mkdir dir="Projects/staffvalidator/components/com_staffvalidator" />
+    </target>
+    
+    <target name="build-for-vagrant" depends="init-vagrant">
+        <echo>Copying extension into file structure for symlinking into Joomlatools box...</echo>
+        <copy todir="Projects/staffvalidator/administrator/components/com_staffvalidator">
+            <fileset dir="src/admin">
+                <include name="**/*" />
+            </fileset>
+        </copy>
+        <copy todir="Projects/staffvalidator/components/com_staffvalidator">
+            <fileset dir="src/site">
+                <include name="**/*" />
+            </fileset>
+        </copy>
+        <copy file="src/staffvalidator.xml" todir="Projects/staffvalidator/administrator/components/com_staffvalidator" />
+    </target>
+    
+    <target name="build-for-distribution" depends="init-distribution">
+        <echo>Copying source code to package staging...</echo>
+        
+        <copy todir="dist/src">
+            <fileset dir="src">
+                <include name="**/*" />
+            </fileset>
+        </copy>
+        
+        <echo>Creating archive...</echo>
+        <zip destfile="dist/bin/joomla-staff-validator.zip">
+            <fileset dir="dist/src">
+                <include name="**/*" />
+            </fileset>
+        </zip>
+    </target>
 </project>

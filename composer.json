@@ -23,9 +23,10 @@
     },
     "minimum-stability": "stable",
     "require": {
-        
+        "php": "^7.1"
     },
     "require-dev": {
+        "ext-zip": "*",
         "phing/phing": "^2.16"
     }
 }
