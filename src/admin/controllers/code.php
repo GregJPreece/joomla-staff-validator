@@ -1,5 +1,7 @@
 <?php
 
+use Joomla\CMS\MVC\Controller\FormController;
+
 /**
  * @package     Joomla.Administrator
  * @subpackage  com_staffvalidator
@@ -18,4 +20,4 @@ defined('_JEXEC') or die('Restricted access');
  * @subpackage  com_staffvalidator
  * @since       0.0.9
  */
-class StaffValidatorControllerCode extends JControllerForm {}
+class StaffValidatorControllerCode extends FormController {}

@@ -1,5 +1,9 @@
 <?php
 
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\Router\Route;
+use Joomla\CMS\HTML\HTMLHelper;
+
 /**
  * @package     Joomla.Administrator
  * @subpackage  com_staffvalidator
@@ -12,14 +16,14 @@
 defined('_JEXEC') or die('Restricted access');
 
 ?>
-<form action="<?= JRoute::_('index.php?option=com_staffvalidator&layout=edit&id=' . (int) $this->item->id); ?>"
+<form action="<?= Route::_('index.php?option=com_staffvalidator&layout=edit&id=' . (int) $this->item->id); ?>"
       method="post" name="adminForm" id="adminForm">
-    <?= JHtml::_('form.token'); ?>
+    <?= HTMLHelper::_('form.token'); ?>
     <input type="hidden" name="task" value="code.edit">
     <div class="form-horizontal">
         <fieldset class="adminform">
             <legend>
-                <?= JText::_('COM_STAFFVALIDATOR_MANAGER_DETAILS_CODE_EDIT'); ?>
+                <?= Text::_('COM_STAFFVALIDATOR_MANAGER_DETAILS_CODE_EDIT'); ?>
             </legend>
             <div class="row-fluid">
                 <div class="span6">

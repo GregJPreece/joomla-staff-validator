@@ -1,5 +1,8 @@
 <?php
 
+use Joomla\CMS\MVC\View\HtmlView;
+use Joomla\CMS\Log\Log;
+
 /**
  * @package     Joomla.Administrator
  * @subpackage  com_staffvalidator
@@ -16,7 +19,7 @@ defined('_JEXEC') or die('Restricted access');
  *
  * @since  0.0.1
  */
-class StaffValidatorViewStaffValidator extends JViewLegacy {
+class StaffValidatorViewStaffValidator extends HtmlView {
     
     /**
      * Display the Staff Validator view
@@ -32,7 +35,7 @@ class StaffValidatorViewStaffValidator extends JViewLegacy {
 
         // Check for errors.
         if (count($errors = $this->get('Errors'))) {
-            JLog::add(implode('<br />', $errors), JLog::WARNING, 'jerror');
+            Log::add(implode('<br />', $errors), Log::WARNING, 'jerror');
 
             return false;
         }    

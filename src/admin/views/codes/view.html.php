@@ -1,5 +1,10 @@
 <?php
 
+use Joomla\CMS\MVC\View\HtmlView;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\Toolbar\ToolbarHelper;
+use Joomla\CMS\Factory;
+
 /**
  * @package     Joomla.Administrator
  * @subpackage  com_staffvalidator
@@ -14,7 +19,7 @@ defined('_JEXEC') or die('Restricted access');
 /**
  * Main Staff Validator Admin View
  */
-class StaffValidatorViewCodes extends JViewLegacy {
+class StaffValidatorViewCodes extends HtmlView {
     
     /**
      * Display the main Staff Validator view
@@ -33,11 +38,8 @@ class StaffValidatorViewCodes extends JViewLegacy {
         $this->sortDirection = $state->get('list.direction');
 
         // Check for errors.
-        if (count($errors = $this->get('Errors')))
-        {
-            JError::raiseError(500, implode('<br />', $errors));
-
-            return false;
+        if (count($errors = $this->get('Errors'))) {
+            throw new RuntimeException(implode('<br />', $errors), 500);
         }
 
         // Set up the document
@@ -49,17 +51,17 @@ class StaffValidatorViewCodes extends JViewLegacy {
     }
 
     protected function addToolbar(): void {
-        $title = JText::_('COM_STAFFVALIDATOR_MANAGER_TITLE');
+        $title = Text::_('COM_STAFFVALIDATOR_MANAGER_TITLE');
         $title .= ($this->pagination->total) ? ' (<span class="list-count">' . $this->pagination->total . '</span>)' : '';
 
-        JToolbarHelper::title($title);
-        JToolbarHelper::addNew('code.add');
-        JToolbarHelper::editList('code.edit');
-        JToolbarHelper::deleteList('', 'codes.delete');
+        ToolbarHelper::title($title);
+        ToolbarHelper::addNew('code.add');
+        ToolbarHelper::editList('code.edit');
+        ToolbarHelper::deleteList('', 'codes.delete');
     }
 
     protected function setupDocument(): void {
-        $document = JFactory::getDocument();
+        $document = Factory::getDocument();
         $document->setTitle(JText::_('COM_STAFFVALIDATOR_MANAGER_TITLE'));
     }
 

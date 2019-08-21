@@ -1,5 +1,9 @@
 <?php
 
+use Joomla\CMS\MVC\Model\AdminModel;
+use Joomla\CMS\Table\Table;
+use Joomla\CMS\Factory;
+
 /**
  * @package     Joomla.Administrator
  * @subpackage  com_staffvalidator
@@ -14,7 +18,7 @@ defined('_JEXEC') or die('Restricted access');
 /**
  * Staff Validator Code Model
  */
-class StaffValidatorModelCode extends JModelAdmin {
+class StaffValidatorModelCode extends AdminModel {
 
     /**
      * Fetches a table object, loads it if it is
@@ -23,10 +27,10 @@ class StaffValidatorModelCode extends JModelAdmin {
      * @param string $type The table name. Optional.
      * @param string $prefix The class prefix. Optional.
      * @param array $config Configuration array for model. Optional.
-     * @return JTable The loaded table object
+     * @return Table The loaded table object
      */
     public function getTable($type = 'Code', $prefix = 'StaffValidatorTable', $config = []) {
-        return JTable::getInstance($type, $prefix, $config);    
+        return Table::getInstance($type, $prefix, $config);    
     }
 
     /**
@@ -34,7 +38,7 @@ class StaffValidatorModelCode extends JModelAdmin {
      * 
      * @param array $data Data for the form
      * @param boolean $loadData Whether the form should load its own data
-     * @return mixed JForm object on success, false on failure
+     * @return mixed \Joomla\CMS\Form\Form object on success, false on failure
      */
     public function getForm($data = [], $loadData = true) {
         $form = $this->loadForm(
@@ -54,7 +58,7 @@ class StaffValidatorModelCode extends JModelAdmin {
      * @return mixed Data for the form
      */
     protected function loadFormData() {
-        $data = JFactory::getApplication()->getUserState(
+        $data = Factory::getApplication()->getUserState(
             'com_staffvalidator.edit.code.data', []
         );
 

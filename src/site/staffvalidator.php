@@ -1,5 +1,8 @@
 <?php
 
+use Joomla\CMS\MVC\Controller\BaseController;
+use Joomla\CMS\Factory;
+
 /**
  * @package     Joomla.Administrator
  * @subpackage  com_staffvalidator
@@ -12,10 +15,10 @@
 defined('_JEXEC') or die('Restricted access');
 
 // Get an instance of the controller prefixed by StaffValidator
-$controller = JControllerLegacy::getInstance('StaffValidator');
+$controller = BaseController::getInstance('StaffValidator');
 
 // Perform the Request task
-$input = JFactory::getApplication()->input;
+$input = Factory::getApplication()->input;
 $controller->execute($input->getCmd('task'));
 
 // Redirect if set by the controller

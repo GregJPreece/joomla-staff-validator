@@ -1,5 +1,8 @@
 <?php
 
+use Joomla\CMS\Factory;
+use Joomla\CMS\MVC\Model\ListModel;
+
 /**
  * @package     Joomla.Administrator
  * @subpackage  com_staffvalidator
@@ -11,7 +14,7 @@
  /**
  * Staff Validator code list Model
  */
-class StaffValidatorModelCodes extends JModelList {
+class StaffValidatorModelCodes extends ListModel {
 
     public function __construct($config = []) {
         $config['filter_fields'] = [
@@ -26,10 +29,9 @@ class StaffValidatorModelCodes extends JModelList {
      *
      * @return string An SQL query
      */
-    protected function getListQuery()
-    {
+    protected function getListQuery() {
         // Initialize variables.
-        $db    = JFactory::getDbo();
+        $db    = Factory::getDbo();
         $query = $db->getQuery(true);
 
         // Create the base select statement.

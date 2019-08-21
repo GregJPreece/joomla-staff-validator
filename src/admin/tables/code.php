@@ -1,5 +1,7 @@
 <?php
 
+use Joomla\CMS\Table\Table;
+
 /**
  * @package     Joomla.Administrator
  * @subpackage  com_staffvalidator
@@ -11,7 +13,7 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
-class StaffValidatorTableCode extends JTable {
+class StaffValidatorTableCode extends Table {
     public function __construct(&$db) {
         parent::__construct('#__staffvalidator_codes', 'id', $db);
     }

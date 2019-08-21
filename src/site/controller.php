@@ -1,5 +1,7 @@
 <?php
 
+use Joomla\CMS\MVC\Controller\BaseController;
+
 /**
  * @package     Joomla.Administrator
  * @subpackage  com_staffvalidator
@@ -16,4 +18,4 @@ defined('_JEXEC') or die('Restricted access');
  *
  * @since  0.0.1
  */
-class StaffValidatorController extends JControllerLegacy {}
+class StaffValidatorController extends BaseController {}

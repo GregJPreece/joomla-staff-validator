@@ -1,5 +1,7 @@
 <?php
 
+use Joomla\CMS\MVC\Controller\AdminController;
+
 /**
  * @package     Joomla.Administrator
  * @subpackage  com_staffvalidator
@@ -11,7 +13,7 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
-class StaffValidatorControllerCodes extends JControllerAdmin {
+class StaffValidatorControllerCodes extends AdminController {
 
     /**
      * Proxy for getModel.

@@ -1,5 +1,10 @@
 <?php
 
+use Joomla\CMS\Factory;
+use Joomla\CMS\MVC\View\HtmlView;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\Toolbar\ToolbarHelper;
+
 /**
  * @package     Joomla.Administrator
  * @subpackage  com_staffvalidator
@@ -11,7 +16,7 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
-class StaffValidatorViewCode extends JViewLegacy {
+class StaffValidatorViewCode extends HtmlView {
 
     protected $form = null;
 
@@ -25,8 +30,7 @@ class StaffValidatorViewCode extends JViewLegacy {
         $errors = $this->get('Errors');
         
         if (count($errors)) {
-            JError::raiseError(500, implode('<br>', $errors));
-            return false;
+            throw new RuntimeException(implode('<br>', $errors), 500);
         }
 
         $this->addToolbar();
@@ -37,21 +41,21 @@ class StaffValidatorViewCode extends JViewLegacy {
 
     protected function addToolbar() {
 
-        $input = JFactory::getApplication()->input;
+        $input = Factory::getApplication()->input;
         $input->set('hidemainmenu', true);
 
 
         $isNew = ($this->item->id == 0);
 
         if ($isNew) {
-            $title = JText::_('COM_STAFFVALIDATOR_MANAGER_TITLE_CODE_NEW');
+            $title = Text::_('COM_STAFFVALIDATOR_MANAGER_TITLE_CODE_NEW');
         } else {
-            $title = JText::_('COM_STAFFVALIDATOR_MANAGER_TITLE_CODE_EDIT');
+            $title = Text::_('COM_STAFFVALIDATOR_MANAGER_TITLE_CODE_EDIT');
         }
 
-        JToolbarHelper::title($title, 'code');
-        JToolbarHelper::save('code.save');
-        JToolbarHelper::cancel(
+        ToolbarHelper::title($title, 'code');
+        ToolbarHelper::save('code.save');
+        ToolbarHelper::cancel(
             'codes',
             $isNew ? 'JTOOLBAR_CANCEL' : 'JTOOLBAR_CLOSE'
         );

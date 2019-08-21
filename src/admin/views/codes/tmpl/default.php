@@ -1,5 +1,11 @@
 <?php
 
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\Router\Route;
+use Joomla\CMS\Factory;
+use Joomla\CMS\Date\Date;
+
 /**
  * @package     Joomla.Administrator
  * @subpackage  com_staffvalidator
@@ -12,7 +18,7 @@
 defined('_JEXEC') or die('Restricted Access');
 ?>
 <form action="index.php?option=com_staffvalidator&view=codes" method="post" id="adminForm" name="adminForm">
-    <?= JHtml::_('form.token'); ?>
+    <?= HTMLHelper::_('form.token'); ?>
     <input type="hidden" name="task" value="" />
     <input type="hidden" name="boxchecked" value="0" />
     <input type="hidden" name="filter_order" value="<?= $this->sortColumn; ?>" />
@@ -20,29 +26,29 @@ defined('_JEXEC') or die('Restricted Access');
     <table class="table table-striped table-hover sortable">
         <thead>
         <tr>
-            <th width="1%"><?= JText::_('COM_STAFFVALIDATOR_NUM'); ?></th>
+            <th width="1%"><?= Text::_('COM_STAFFVALIDATOR_NUM'); ?></th>
             <th width="2%">
-                <?= JHtml::_('grid.checkall'); ?>
+                <?= HTMLHelper::_('grid.checkall'); ?>
             </th>
             <th>
-                <?= JText::_('COM_STAFFVALIDATOR_FIELD_CODE_ID_LABEL'); ?>
+                <?= Text::_('COM_STAFFVALIDATOR_FIELD_CODE_ID_LABEL'); ?>
             </th>
             <th>
-                <?= JText::_('COM_STAFFVALIDATOR_FIELD_CODE_USER_LABEL'); ?>
+                <?= Text::_('COM_STAFFVALIDATOR_FIELD_CODE_USER_LABEL'); ?>
             </th>
             <th>
-                <?= JHTML::_(
+                <?= HTMLHelper::_(
                     'grid.sort',
-                    JText::_('COM_STAFFVALIDATOR_FIELD_CODE_VALUE_LABEL'),
+                    Text::_('COM_STAFFVALIDATOR_FIELD_CODE_VALUE_LABEL'),
                     'code',
                     $this->sortDirection,
                     $this->sortColumn
                 ); ?>
             </th>
             <th>
-                <?= JHTML::_(
+                <?= HTMLHelper::_(
                     'grid.sort',
-                    JText::_('COM_STAFFVALIDATOR_FIELD_CODE_TIME_EXPIRES_LABEL'),
+                    Text::_('COM_STAFFVALIDATOR_FIELD_CODE_TIME_EXPIRES_LABEL'),
                     'time_expires',
                     $this->sortDirection,
                     $this->sortColumn
@@ -60,29 +66,29 @@ defined('_JEXEC') or die('Restricted Access');
         <tbody>
             <?php if (!empty($this->items)) : ?>
                 <?php foreach ($this->items as $i => $row) : 
-                    $link = JRoute::_('index.php?option=com_staffvalidator&task=code.edit&id=' . $row->id);
-                    $timezone = JFactory::getUser()->getTimezone();;
+                    $link = Route::_('index.php?option=com_staffvalidator&task=code.edit&id=' . $row->id);
+                    $timezone = Factory::getUser()->getTimezone();
                 ?>
                     <tr>
                         <td>
                             <?= $this->pagination->getRowOffset($i); ?>
                         </td>
                         <td>
-                            <?= JHtml::_('grid.id', $i, $row->id); ?>
+                            <?= HTMLHelper::_('grid.id', $i, $row->id); ?>
                         </td>
                         <td>
-                            <a href="<?= $link ?>" title="<?= JText::_('COM_STAFFVALIDATOR_MANAGER_LIST_CODE_EDIT'); ?>">
+                            <a href="<?= $link ?>" title="<?= Text::_('COM_STAFFVALIDATOR_MANAGER_LIST_CODE_EDIT'); ?>">
                                 <?= $row->id; ?>
                             </a>
                         </td>
                         <td><?= $row->user_id; ?></td>
                         <td>
-                            <a href="<?= $link ?>" title="<?= JText::_('COM_STAFFVALIDATOR_MANAGER_LIST_CODE_EDIT'); ?>">
+                            <a href="<?= $link ?>" title="<?= Text::_('COM_STAFFVALIDATOR_MANAGER_LIST_CODE_EDIT'); ?>">
                                 <?= $row->code; ?>
                             </a>
                         </td>
                         <td>
-                            <?= new JDate($row->time_expires, $timezone); ?>
+                            <?= new Date($row->time_expires, $timezone); ?>
                         </td>
                     </tr>
                 <?php endforeach; ?>

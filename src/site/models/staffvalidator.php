@@ -1,5 +1,8 @@
 <?php
 
+use Joomla\CMS\Factory;
+use Joomla\CMS\MVC\Model\ItemModel;
+
 /**
  * @package     Joomla.Administrator
  * @subpackage  com_staffvalidator
@@ -16,7 +19,7 @@ defined('_JEXEC') or die('Restricted access');
  *
  * @since  0.0.1
  */
-class StaffValidatorModelStaffValidator extends JModelItem {
+class StaffValidatorModelStaffValidator extends ItemModel {
 
     /**
      * @var string message
@@ -32,7 +35,7 @@ class StaffValidatorModelStaffValidator extends JModelItem {
 
         if (!isset($this->message)){
 
-            $jinput = JFactory::getApplication()->input;
+            $jinput = Factory::getApplication()->input;
             $id     = $jinput->get('id', 1, 'INT');
 
             switch ($id) {
