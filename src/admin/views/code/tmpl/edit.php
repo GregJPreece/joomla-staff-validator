@@ -22,17 +22,18 @@ defined('_JEXEC') or die('Restricted access');
     <input type="hidden" name="task" value="code.edit">
     <div class="form-horizontal">
         <fieldset class="adminform">
+            <?php if ((int) $this->item->id > 0): ?>
             <legend>
                 <?= Text::_('COM_STAFFVALIDATOR_MANAGER_DETAILS_CODE_EDIT'); ?>
             </legend>
+            <?php endif; ?>
             <div class="row-fluid">
                 <div class="span6">
-                    <?php foreach($this->form->getFieldset() as $field): ?>
-                        <div class="control-group">
-                            <div class="control-label"><?= $field->label; ?></div>
-                            <div class="controls"><?= $field->input; ?></div>
-                        </div>
-                    <?php endforeach; ?>
+                    <?php 
+                        foreach($this->form->getFieldset() as $field) {
+                            echo $field->renderField();        
+                        }
+                    ?>
                 </div>
             </div>
         </fieldset>

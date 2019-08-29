@@ -1,11 +1,37 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <form>
     <fieldset>
-        <field name="id" type="hidden" />
-        <field name="note" 
-               type="textarea"
-               label="COM_STAFFVALIDATOR_FIELD_CODE_NOTE_LABEL"
-               description="COM_STAFFVALIDATOR_FIELD_CODE_NOTE_DESC"
-               hint="COM_STAFFVALIDATOR_FIELD_CODE_NOTE_DESC" />
+        <field  name="id" 
+                type="hidden"
+                default="0" />
+        <field  name="user_id"
+                type="user"
+                showon="id:0"
+                label="COM_STAFFVALIDATOR_FIELD_CODE_USER_LABEL"
+                description="COM_STAFFVALIDATOR_FIELD_CODE_USER_DESC"
+                hint="COM_STAFFVALIDATOR_FIELD_CODE_USER_DESC" />
+        <field  name="time_expires"
+                type="calendar"
+                minyear="0"
+                showtime="true"
+                timeformat="24"
+                todaybutton="false"
+                translateformat="true"
+                required="true"
+                label="COM_STAFFVALIDATOR_FIELD_CODE_TIME_EXPIRES_LABEL"
+                description="COM_STAFFVALIDATOR_FIELD_CODE_TIME_EXPIRES_DESC"
+                hint="COM_STAFFVALIDATOR_FIELD_CODE_TIME_EXPIRES_DESC" />
+        <field  name="code" 
+                type="text"
+                required="true"
+                showon="id:0"
+                label="COM_STAFFVALIDATOR_FIELD_CODE_VALUE_LABEL"
+                description="COM_STAFFVALIDATOR_FIELD_CODE_VALUE_DESC"
+                hint="COM_STAFFVALIDATOR_FIELD_CODE_VALUE_DESC" />
+        <field  name="note" 
+                type="textarea"
+                label="COM_STAFFVALIDATOR_FIELD_CODE_NOTE_LABEL"
+                description="COM_STAFFVALIDATOR_FIELD_CODE_NOTE_DESC"
+                hint="COM_STAFFVALIDATOR_FIELD_CODE_NOTE_DESC" />
     </fieldset>
 </form>

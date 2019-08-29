@@ -68,5 +68,21 @@ class StaffValidatorModelCode extends AdminModel {
 
         return $data;
     }
+    
+    /**
+     * Preps the table row data for saving.
+     * @param StaffValidatorTableCode $table Table to prepare
+     */
+    protected function prepareTable($table) {
+        $binds = [
+            'user_id' => Factory::getUser()->id            
+        ];
+        
+        if (empty($table->id)) {
+            $binds['time_generated'] = time();
+        }
+        
+        $table->bind($binds);
+    }
 
 }
