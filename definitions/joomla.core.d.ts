@@ -131,7 +131,7 @@ interface Joomla {
      *
      * @deprecated  4.0 No replacement
      */    
-    popupWindow(mypage: string, myname: string, w: number, h: number, scroll): void;
+    popupWindow(mypage: string, myname: string, w: number, h: number, scroll: string): void;
     
     /**
      * Removes all system messages currently onscreen
