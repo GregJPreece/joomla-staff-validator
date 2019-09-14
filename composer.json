@@ -17,16 +17,24 @@
             "role": "Developer"
         }
     ],
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ],    
     "support": {
         "issues": "https://github.com/GregJPreece/joomla-staff-validator/issues",
         "source": "https://github.com/GregJPreece/joomla-staff-validator"
     },
     "minimum-stability": "stable",
     "require": {
-        "php": "^7.1"
+        "php": "^7.1",
+        "npm-asset/types--jquery": "1.10.35"
     },
     "require-dev": {
         "ext-zip": "*",
-        "phing/phing": "^2.16"
+        "phing/phing": "^2.16",
+        "npm-asset/typescript": "^3.6"
     }
 }

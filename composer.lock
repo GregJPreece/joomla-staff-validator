@@ -1,12 +1,37 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b4c724241087491558f2b20ab1146060",
-    "packages": [],
+    "content-hash": "3097309c128725a258f9d6e2eb4ae4c7",
+    "packages": [
+        {
+            "name": "npm-asset/types--jquery",
+            "version": "1.10.35",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/@types/jquery/-/jquery-1.10.35.tgz"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
+        }
+    ],
     "packages-dev": [
+        {
+            "name": "npm-asset/typescript",
+            "version": "3.6.3-patch.20190909",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/typescript/-/typescript-3.6.3-insiders.20190909.tgz"
+            },
+            "type": "npm-asset",
+            "license": [
+                "Apache-2.0"
+            ]
+        },
         {
             "name": "phing/phing",
             "version": "2.16.1",

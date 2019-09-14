@@ -54,7 +54,12 @@ Created: 2019-03-27
         <mkdir dir="Projects/staffvalidator/components/com_staffvalidator" />
     </target>
     
-    <target name="build-for-vagrant" depends="init-vagrant">
+    <target name="transpile-typescript">
+        <echo>Transpiling Typescript...</echo>
+        <exec command="vendor/npm-asset/typescript/bin/tsc" dir="." /> 
+    </target>
+    
+    <target name="build-for-vagrant" depends="init-vagrant,transpile-typescript">
         <echo>Copying extension into file structure for symlinking into Joomlatools box...</echo>
         <copy todir="Projects/staffvalidator/administrator/components/com_staffvalidator">
             <fileset dir="src/admin">
