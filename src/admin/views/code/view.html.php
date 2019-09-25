@@ -1,9 +1,11 @@
 <?php
 
+use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\Factory;
 use Joomla\CMS\MVC\View\HtmlView;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Toolbar\ToolbarHelper;
+use Joomla\CMS\HTML\HTMLHelper;
 
 /**
  * @package     Joomla.Administrator
@@ -34,6 +36,7 @@ class StaffValidatorViewCode extends HtmlView {
         }
 
         $this->addToolbar();
+        $this->setupDocument();
 
         parent::display($template);
 
@@ -56,10 +59,24 @@ class StaffValidatorViewCode extends HtmlView {
         ToolbarHelper::title($title, 'code');
         ToolbarHelper::save('code.save');
         ToolbarHelper::cancel(
-            'codes',
+            'code.cancel',
             $isNew ? 'JTOOLBAR_CANCEL' : 'JTOOLBAR_CLOSE'
         );
 
+    }
+    
+    protected function setupDocument() {
+        HTMLHelper::_('behavior.framework');
+        HTMLHelper::_('behavior.formvalidator');
+        
+        $isNew = ($this->item->id == 0);
+        $document = Factory::getDocument();
+        $document->setTitle(($isNew)
+                ? Text::_('COM_STAFFVALIDATOR_MANAGER_TITLE_CODE_NEW')
+                : Text::_('COM_STAFFVALIDATOR_MANAGER_TITLE_CODE_EDIT'));
+        $document->addScript(Uri::root() . 
+                '/administrator/components/com_staffvalidator/views/code/js/submit.js');
+        Text::script('COM_STAFFVALIDATOR_MANAGER_CODE_EDIT_VALIDATION_FAIL');
     }
 
 }

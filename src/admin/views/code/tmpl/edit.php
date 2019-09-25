@@ -17,7 +17,7 @@ defined('_JEXEC') or die('Restricted access');
 
 ?>
 <form action="<?= Route::_('index.php?option=com_staffvalidator&layout=edit&id=' . (int) $this->item->id); ?>"
-      method="post" name="adminForm" id="adminForm">
+      method="post" name="adminForm" id="adminForm" class="form-validate">
     <?= HTMLHelper::_('form.token'); ?>
     <input type="hidden" name="task" value="code.edit">
     <div class="form-horizontal">
