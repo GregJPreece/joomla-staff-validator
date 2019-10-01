@@ -46,9 +46,9 @@
         <folder>views</folder>
     </files>
 
-    <languages folder="components/com_staffvalidator/language">
-        <language tag="en-GB">en-GB/en-GB.com_staffvalidator.ini</language>
-        <language tag="en-GB">en-GB/en-GB.com_staffvalidator.sys.ini</language>
+    <languages>
+        <language tag="en-GB">components/com_staffvalidator/language/en-GB/en-GB.com_staffvalidator.ini</language>
+        <language tag="en-GB">components/com_staffvalidator/language/en-GB/en-GB.com_staffvalidator.sys.ini</language>
     </languages>
 
     <administration>
@@ -59,6 +59,8 @@
             <filename>index.html</filename>
             <filename>staffvalidator.php</filename>
             <filename>controller.php</filename>
+            <filename>access.xml</filename>
+            <filename>config.xml</filename>
             <folder>controllers</folder>
             <folder>language</folder>
             <folder>models</folder>
@@ -67,9 +69,9 @@
             <folder>views</folder>
         </files>
 
-        <languages folder="administrator/components/staffvalidator/language">
-            <language tag="en-GB">en-GB/en-GB.com_staffvalidator.ini</language>
-            <language tag="en-GB">en-GB/en-GB.com_staffvalidator.sys.ini</language>
+        <languages>
+            <language tag="en-GB">administrator/components/com_staffvalidator/language/en-GB/en-GB.com_staffvalidator.ini</language>
+            <language tag="en-GB">administrator/components/com_staffvalidator/language/en-GB/en-GB.com_staffvalidator.sys.ini</language>
         </languages>
     </administration>
 
