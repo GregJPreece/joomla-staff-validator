@@ -58,6 +58,10 @@ class StaffValidatorViewCodes extends HtmlView {
         ToolbarHelper::addNew('code.add');
         ToolbarHelper::editList('code.edit');
         ToolbarHelper::deleteList('', 'codes.delete');
+        
+        if (Factory::getUser()->authorise('core.admin', 'com_staffvalidator')) {
+            ToolbarHelper::preferences('com_staffvalidator');
+        }
     }
 
     protected function setupDocument(): void {
