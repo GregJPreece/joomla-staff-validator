@@ -71,7 +71,7 @@ Created: 2019-03-27
                 <include name="**/*" />
             </fileset>
         </copy>
-        <copy file="src/staffvalidator.xml" todir="Projects/staffvalidator/administrator/components/com_staffvalidator" />
+        <copy file="src/staffvalidator.xml" todir="Projects/staffvalidator" />
     </target>
     
     <target name="build-for-distribution" depends="init-distribution">
