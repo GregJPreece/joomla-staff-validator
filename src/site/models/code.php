@@ -16,9 +16,9 @@ use Joomla\CMS\Factory;
 defined('_JEXEC') or die('Restricted access');
 
 /**
- * Staff Validator Create Code Model
+ * Staff Validator Code Model
  */
-class StaffValidatorModelCreate extends AdminModel {
+class StaffValidatorModelCode extends AdminModel {
 
     /**
      * Fetches a table object, loads it if it is
@@ -43,7 +43,7 @@ class StaffValidatorModelCreate extends AdminModel {
     public function getForm($data = [], $loadData = true) {
         $form = $this->loadForm(
             'com_staffvalidator.code.create',
-            'create-form',
+            'create',
             [
                 'control' => 'jform',
                 'load_data' => $loadData

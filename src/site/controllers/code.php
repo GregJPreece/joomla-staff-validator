@@ -22,7 +22,7 @@ defined('_JEXEC') or die('Restricted access');
  * @package     Joomla.Site
  * @subpackage  com_staffvalidator
  */
-class StaffValidatorControllerCreate extends FormController {
+class StaffValidatorControllerCode extends FormController {
     public function cancel($key = null) {
         parent::cancel($key);
         
@@ -37,14 +37,14 @@ class StaffValidatorControllerCreate extends FormController {
      * Function handing the save for adding a new validation code
      * Based on the save() function in the JControllerForm class
      */
-    public function save($key = null, $urlVar = null) {
+    public function create($key = null, $urlVar = null) {
 
         // Check for request forgeries.
         Session::checkToken() or jexit(Text::_('JINVALID_TOKEN'));
 
         $app = Factory::getApplication(); 
         $input = $app->input; 
-        $model = $this->getModel('create');
+        $model = $this->getModel('code');
 
         $currentUri = (string) Uri::getInstance();
 

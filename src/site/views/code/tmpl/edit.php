@@ -18,7 +18,7 @@ defined('_JEXEC') or die('Restricted access');
 <form action="<?= Route::_('index.php?option=com_staffvalidator'); ?>"
     method="post" name="adminForm" id="adminForm" class="form-validate">
     <input type="hidden" name="option" value="com_staffvalidator" />
-    <input type="hidden" name="task" value="create.save" />
+    <input type="hidden" name="task" value="code.save" />
     <input type="hidden" name="layout" value="<?= htmlspecialchars($this->getLayout(), ENT_COMPAT, 'UTF-8'); ?>" />
     <?= HTMLHelper::_('form.token'); ?>
 
@@ -35,12 +35,12 @@ defined('_JEXEC') or die('Restricted access');
 
     <div class="btn-toolbar">
         <div class="btn-group">
-            <button type="button" class="btn btn-primary" onclick="Joomla.submitbutton('create.save')">
+            <button type="button" class="btn btn-primary" onclick="Joomla.submitbutton('code.save')">
                 <span class="icon-ok"></span><?= Text::_('JSAVE') ?>
             </button>
         </div>
         <div class="btn-group">
-            <button type="button" class="btn" onclick="Joomla.submitbutton('create.cancel')">
+            <button type="button" class="btn" onclick="Joomla.submitbutton('code.cancel')">
                 <span class="icon-cancel"></span><?= Text::_('JCANCEL') ?>
             </button>
         </div>
