@@ -2,10 +2,8 @@
 
 use Joomla\CMS\MVC\View\HtmlView;
 use Joomla\CMS\HTML\HTMLHelper;
-use Joomla\CMS\Helper\ContentHelper;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
-use Joomla\CMS\Uri\Uri;
 
 /**
  * @package     Joomla.Administrator
@@ -17,7 +15,7 @@ use Joomla\CMS\Uri\Uri;
 
 defined('_JEXEC') or die('Restricted access');
 
-class StaffValidatorViewCode extends HtmlView {
+class StaffValidatorViewValidate extends HtmlView {
 
     protected $form = null;
 
@@ -31,18 +29,18 @@ class StaffValidatorViewCode extends HtmlView {
      */
     public function display($template = null) {
 
-        $this->form = $this->get('Form');
+        $app = Factory::getApplication();
+        $this->setModel($this->getModel('Code'), true);
+        $this->form = $this->get('ValidationForm');
         $this->script = $this->get('Script'); 
-
-        // Check that the user has permissions to create a new code
-        $this->canDo = ContentHelper::getActions('com_staffvalidator');
-        if (!($this->canDo->get('core.create'))) {
-            $app = Factory::getApplication(); 
-            $app->enqueueMessage(Text::_('JERROR_ALERTNOAUTHOR'), 'error');
-            $app->setHeader('status', 403, true);
-            return;
+        
+        $successObj = $app->getUserState('com_staffvalidator.validate.data');
+    
+        if ($successObj) {
+            $this->successObject = $successObj;
+            $app->setUserState('com_staffvalidator.validate.data', null);
         }
-
+        
         // Check for errors.
         if (count($errors = $this->get('Errors'))) {
             throw new Exception(implode("\n", $errors), 500);
@@ -61,10 +59,9 @@ class StaffValidatorViewCode extends HtmlView {
         HTMLHelper::_('behavior.formvalidator');
         
         $document = Factory::getDocument();
-        $document->setTitle(Text::_('COM_STAFFVALIDATOR_CREATE_TITLE'));
-        $document->addScript(Uri::root() . $this->script);
-        $document->addScript(Uri::root() . "/administrator/components/com_staffvalidator"
-                                          . "/views/code/js/submit.js");
+        $document->setTitle(JText::_('COM_STAFFVALIDATOR_CREATE_TITLE'));
+        $document->addScript(JURI::root() . $this->script);
+        $document->addScript(JURI::root() . "/components/com_staffvalidator/views/validate/js/submit.js");
         Text::script('COM_STAFFVALIDATOR_CREATE_ERROR_UNACCEPTABLE');
     }
 

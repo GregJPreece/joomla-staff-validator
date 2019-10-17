@@ -5,6 +5,8 @@ use Joomla\CMS\Language\Text;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\Session\Session;
 use Joomla\CMS\Factory;
+use Joomla\Input\Input;
+use Joomla\CMS\Router\Route;
 
 /**
  * @package     Joomla.Site
@@ -23,6 +25,7 @@ defined('_JEXEC') or die('Restricted access');
  * @subpackage  com_staffvalidator
  */
 class StaffValidatorControllerCode extends FormController {
+    
     public function cancel($key = null) {
         parent::cancel($key);
         
@@ -85,10 +88,6 @@ class StaffValidatorControllerCode extends FormController {
             return false;
         }
 
-        $validData['created_by'] = Factory::getUser()->get('id', 0);
-        $validData['updated_by'] = $validData['created_by'];
-        $validData['time_generated'] = time();
-        
         if ($validData['time_expires'] == 0) {
             $validData['time_expires'] = null;
         }
@@ -120,5 +119,33 @@ class StaffValidatorControllerCode extends FormController {
         return true;
         
     }
+    
+    public function validate($key = null, $urlVar = null) {
+        // Check for request forgeries.
+        Session::checkToken() or jexit(Text::_('JINVALID_TOKEN'));
 
+        $app = Factory::getApplication(); 
+        $input = $app->input; 
+        $model = $this->getModel('code');
+
+        $formData  = new Input($input->get('jform', [], 'array'));
+        $foundCode = $model->getValidCode($formData->getAlnum('code'));
+        
+        if (!$foundCode) {
+            $this->setRedirect(
+                Uri::getInstance(), 
+                Text::_('COM_STAFFVALIDATOR_VALIDATE_ERROR'), 
+                'error'
+            );
+            return false;
+        } else {
+            $app->setUserState("$this->option.validate.data", $foundCode);
+            $this->setRedirect(
+                Route::_('index.php?option=com_staffvalidator&view=validate&layout=success'),
+                Text::_('COM_STAFFVALIDATOR_VALIDATE_SUCCESS')
+            );
+            return true;
+        }
+    }
+    
 }

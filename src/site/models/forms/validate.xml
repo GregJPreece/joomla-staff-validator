@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<form>
+    <fieldset name="validate">
+        <field  name="code" 
+                type="text"
+                required="true"
+                label="COM_STAFFVALIDATOR_FIELD_CODE_VALIDATE_LABEL"
+                description="COM_STAFFVALIDATOR_FIELD_CODE_VALIDATE_DESC"
+                hint="COM_STAFFVALIDATOR_FIELD_CODE_VALIDATE_DESC" />
+    </fieldset>
+</form>

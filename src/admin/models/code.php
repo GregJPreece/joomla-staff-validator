@@ -80,6 +80,8 @@ class StaffValidatorModelCode extends AdminModel {
         
         if (empty($table->id)) {
             $binds['time_generated'] = time();
+            $binds['created_by'] = Factory::getUser()->get('id', 0);
+            $binds['updated_by'] = $binds['created_by'];                    
         }
         
         $table->bind($binds);

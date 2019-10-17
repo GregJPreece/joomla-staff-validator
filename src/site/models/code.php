@@ -52,6 +52,50 @@ class StaffValidatorModelCode extends AdminModel {
 
         return (empty($form)) ? false : $form;
     }
+    
+    public function getValidationForm($data = [], $loadData = true) {
+        $form = $this->loadForm(
+            'com_staffvalidator.code.validate',
+            'validate',
+            [
+                'control' => 'jform',
+                'load_data' => $loadData
+            ]
+        );
+
+        return (empty($form)) ? false : $form;
+    }
+    
+    public function getCode(string $code) {
+        $db = Factory::getDbo();
+        $query = $db->getQuery(true);
+        
+        $query->select(['codes.*, users.name, users.username'])
+              ->from($db->qn('#__staffvalidator_codes', 'codes'))
+              ->innerJoin($db->qn('#__users', 'users') . ' ON ' . $db->qn('codes.user_id') . ' = ' . $db->qn('users.id'))
+              ->where($db->qn('codes.code'). ' = ' . $db->q(trim($code)));
+        
+        $db->setQuery($query);
+
+        return $db->loadObject();
+    }
+
+    public function getValidCode(string $code) {
+        $db = Factory::getDbo();
+        $query = $db->getQuery(true);
+        
+        $query->select(['codes.*, users.name, users.username'])
+              ->from($db->qn('#__staffvalidator_codes', 'codes'))
+              ->innerJoin($db->qn('#__users', 'users') . ' ON ' . $db->qn('codes.user_id') . ' = ' . $db->qn('users.id'))
+              ->where(
+                      $db->qn('codes.code') . ' = ' . $db->q(trim($code)) . 
+                      ' AND (' . $db->qn('codes.time_expires') . ' IS NULL' . 
+                      ' OR ' . $db->qn('codes.time_expires') . ' < ' . time() . ')');
+        
+        $db->setQuery($query);
+
+        return $db->loadObject();
+    }
 
     /**
      * Returns the data that should be injected in the form
@@ -80,6 +124,8 @@ class StaffValidatorModelCode extends AdminModel {
         
         if (empty($table->id)) {
             $binds['time_generated'] = time();
+            $binds['created_by'] = Factory::getUser()->get('id', 0);
+            $binds['updated_by'] = $binds['created_by'];        
         }
         
         $table->bind($binds);

@@ -18,4 +18,19 @@ defined('_JEXEC') or die('Restricted access');
  *
  * @since  0.0.1
  */
-class StaffValidatorController extends BaseController {}
+class StaffValidatorController extends BaseController {
+    
+    public function display($cachable = false, $urlparams = array()) {        
+        $document = JFactory::getDocument();
+        $viewName = $this->input->getCmd('view', 'login');
+        $viewFormat = $document->getType();
+        $layoutName = $this->input->getCmd('layout', 'default');
+        
+        $view = $this->getView($viewName, $viewFormat);
+        $view->setModel($this->getModel('Code'), true);
+        $view->setLayout($layoutName);
+        $view->document = $document;
+        $view->display();
+    }
+    
+}
