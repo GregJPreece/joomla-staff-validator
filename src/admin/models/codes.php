@@ -33,10 +33,21 @@ class StaffValidatorModelCodes extends ListModel {
         // Initialize variables.
         $db    = Factory::getDbo();
         $query = $db->getQuery(true);
-
+        
         // Create the base select statement.
-        $query->select('*')
-                ->from($db->quoteName('#__staffvalidator_codes'));
+        $query->select([
+            'codes.*',
+            $db->qn('owner.name', 'ownerName'),
+            $db->qn('owner.username', 'ownerUsername'),
+            $db->qn('creator.name', 'creatorName'),
+            $db->qn('creator.username', 'creatorUsername'),
+            $db->qn('updater.name', 'updaterName'),
+            $db->qn('updater.username', 'updaterUsername')
+        ])
+        ->from($db->qn('#__staffvalidator_codes', 'codes'))
+        ->innerJoin($db->qn('#__users', 'owner') . ' ON ' . $db->qn('codes.user_id') . ' = ' . $db->qn('owner.id'))
+        ->innerJoin($db->qn('#__users', 'creator') . ' ON ' . $db->qn('codes.created_by') . ' = ' . $db->qn('creator.id'))
+        ->innerJoin($db->qn('#__users', 'updater') . ' ON ' . $db->qn('codes.user_id') . ' = ' . $db->qn('updater.id'));
 
         $query->order(
             $db->escape($this->getState('list.ordering', 'time_expires'))

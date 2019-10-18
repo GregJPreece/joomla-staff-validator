@@ -4,7 +4,9 @@ CREATE TABLE IF NOT EXISTS `#__staffvalidator_codes` (
   `created_by` INT NOT NULL,
   `updated_by` INT NOT NULL,
   `code` VARCHAR(10) NOT NULL,
+  `note` TEXT NULL,
   `time_generated` INT UNSIGNED NOT NULL,
+  `time_updated` INT UNSIGNED NOT NULL,
   `time_expires` INT UNSIGNED NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `code_UNIQUE` (`code` ASC)

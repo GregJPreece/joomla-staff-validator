@@ -70,7 +70,7 @@ class StaffValidatorModelCode extends AdminModel {
         $db = Factory::getDbo();
         $query = $db->getQuery(true);
         
-        $query->select(['codes.*, users.name, users.username'])
+        $query->select(['codes.*', 'users.name', 'users.username'])
               ->from($db->qn('#__staffvalidator_codes', 'codes'))
               ->innerJoin($db->qn('#__users', 'users') . ' ON ' . $db->qn('codes.user_id') . ' = ' . $db->qn('users.id'))
               ->where($db->qn('codes.code'). ' = ' . $db->q(trim($code)));
@@ -84,7 +84,7 @@ class StaffValidatorModelCode extends AdminModel {
         $db = Factory::getDbo();
         $query = $db->getQuery(true);
         
-        $query->select(['codes.*, users.name, users.username'])
+        $query->select(['codes.*', 'users.name', 'users.username'])
               ->from($db->qn('#__staffvalidator_codes', 'codes'))
               ->innerJoin($db->qn('#__users', 'users') . ' ON ' . $db->qn('codes.user_id') . ' = ' . $db->qn('users.id'))
               ->where(
@@ -122,10 +122,12 @@ class StaffValidatorModelCode extends AdminModel {
             'user_id' => Factory::getUser()->id            
         ];
         
+        $binds['time_updated'] = time();
+        $binds['updated_by'] = Factory::getUser()->get('id', 0);
+        
         if (empty($table->id)) {
             $binds['time_generated'] = time();
-            $binds['created_by'] = Factory::getUser()->get('id', 0);
-            $binds['updated_by'] = $binds['created_by'];        
+            $binds['created_by'] = $binds['updated_by'];
         }
         
         $table->bind($binds);

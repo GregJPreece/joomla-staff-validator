@@ -9,7 +9,7 @@
     <copyright>Greg J Preece</copyright>
     <license>GPL v3</license>
     <!--  The version string is recorded in the components table -->
-    <version>0.0.12</version>
+    <version>0.0.13</version>
     <!-- The description is optional and defaults to the name -->
     <description>
         A helper component to allow site members to validate their identities when contacting
