@@ -75,8 +75,7 @@ defined('_JEXEC') or die('Restricted Access');
                     $link = Route::_('index.php?option=com_staffvalidator&task=code.edit&id=' . $row->id);
                     $ownerLink = Route::_('index.php?option=com_users&view=user&layout=edit&id=' . $row->user_id);
                     $creatorLink = Route::_('index.php?option=com_users&view=user&layout=edit&id=' . $row->created_by);
-                    $updaterLink = Route::_('index.php?option=com_users&view=user&layout=edit&id=' . $row->updated_by);    
-                    $timezone = Factory::getUser()->getTimezone();
+                    $updaterLink = Route::_('index.php?option=com_users&view=user&layout=edit&id=' . $row->updated_by);
                 ?>
                     <tr>
                         <td>
@@ -103,13 +102,13 @@ defined('_JEXEC') or die('Restricted Access');
                         <td>
                             <?= (empty($row->time_expires)) 
                                 ? Text::_('COM_STAFFVALIDATOR_MANAGER_LIST_CODE_NO_EXPIRY')
-                                : new Date($row->time_expires, $timezone); ?>
+                                : HTMLHelper::date($row->time_expires, Text::_('DATE_FORMAT_FILTER_DATETIME')); ?>
                         </td>
                         <td>
                             <a href="<?= $creatorLink ?>">
                                 <?= Text::sprintf(
                                         'COM_STAFFVALIDATOR_FIELD_CODE_CREATOR_TEXT',
-                                        new Date($row->time_generated, $timezone),
+                                        HtmlHelper::date($row->time_generated, Text::_('DATE_FORMAT_FILTER_DATETIME')),
                                         $row->creatorName) ?>
                             </a>
                         </td>
@@ -117,7 +116,7 @@ defined('_JEXEC') or die('Restricted Access');
                             <a href="<?= $updaterLink ?>">
                                 <?= Text::sprintf(
                                         'COM_STAFFVALIDATOR_FIELD_CODE_UPDATED_TEXT', 
-                                        new Date($row->time_updated, $timezone),
+                                        HTMLHelper::date($row->time_updated, Text::_('DATE_FORMAT_FILTER_DATETIME')),
                                         $row->updaterName) ?>
                             </a>
                         </td>
