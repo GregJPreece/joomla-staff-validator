@@ -1,6 +1,7 @@
 <?php
 
 use Joomla\CMS\MVC\Controller\BaseController;
+use Joomla\CMS\Factory;
 
 /**
  * @package     Joomla.Administrator
@@ -21,7 +22,7 @@ defined('_JEXEC') or die('Restricted access');
 class StaffValidatorController extends BaseController {
     
     public function display($cachable = false, $urlparams = array()) {        
-        $document = JFactory::getDocument();
+        $document = Factory::getDocument();
         $viewName = $this->input->getCmd('view', 'login');
         $viewFormat = $document->getType();
         $layoutName = $this->input->getCmd('layout', 'default');
