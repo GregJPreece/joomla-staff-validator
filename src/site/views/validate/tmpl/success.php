@@ -20,3 +20,9 @@ defined('_JEXEC') or die('Restricted access');
     <?= Text::_('COM_STAFFVALIDATOR_VALIDATED_MESSAGE') ?>
     <strong><?= $this->successObject->name ?></strong>
 </p>
+
+<?php if (!empty($this->validatePostamble)): ?>
+    <p class="validation-preamble">
+        <?= $this->validatePostamble ?>
+    </p>
+<?php endif; ?>    

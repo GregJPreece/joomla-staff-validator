@@ -25,6 +25,13 @@ defined('_JEXEC') or die('Restricted access');
     <div class="form-horizontal">
         <fieldset class="adminform">
             <legend><?= Text::_('COM_STAFFVALIDATOR_VALIDATE_LEGEND') ?></legend>
+            <?php if (!empty($this->validatePreamble)): ?>
+                <div class="row-fluid">
+                    <p class="validation-preamble">
+                        <?= $this->validatePreamble ?>
+                    </p>
+                </div>
+            <?php endif; ?>    
             <div class="row-fluid">
                 <div class="span6">
                     <?= $this->form->renderFieldset('validate');  ?>

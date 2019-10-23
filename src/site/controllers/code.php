@@ -7,6 +7,7 @@ use Joomla\CMS\Session\Session;
 use Joomla\CMS\Factory;
 use Joomla\Input\Input;
 use Joomla\CMS\Router\Route;
+use Joomla\CMS\Component\ComponentHelper;
 
 /**
  * @package     Joomla.Site
@@ -132,11 +133,13 @@ class StaffValidatorControllerCode extends FormController {
         $foundCode = $model->getValidCode($formData->getAlnum('code'));
         
         if (!$foundCode) {
-            $this->setRedirect(
-                Uri::getInstance(), 
-                Text::_('COM_STAFFVALIDATOR_VALIDATE_ERROR'), 
-                'error'
-            );
+            $componentParams = ComponentHelper::getParams('com_staffvalidator');
+            $errorTextParam = $componentParams->get('validateFailureText');
+            $errorText = (empty($errorTextParam)) 
+                    ? Text::_('COM_STAFFVALIDATOR_VALIDATE_ERROR') 
+                    : $errorTextParam;
+            
+            $this->setRedirect(Uri::getInstance(), $errorText, 'error');
             return false;
         } else {
             $app->setUserState("$this->option.validate.data", $foundCode);

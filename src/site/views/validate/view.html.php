@@ -4,6 +4,7 @@ use Joomla\CMS\MVC\View\HtmlView;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Component\ComponentHelper;
 
 /**
  * @package     Joomla.Administrator
@@ -28,18 +29,11 @@ class StaffValidatorViewValidate extends HtmlView {
      * @return  void
      */
     public function display($template = null) {
-
-        $app = Factory::getApplication();
         $this->setModel($this->getModel('Code'), true);
         $this->form = $this->get('ValidationForm');
         $this->script = $this->get('Script'); 
         
-        $successObj = $app->getUserState('com_staffvalidator.validate.data');
-    
-        if ($successObj) {
-            $this->successObject = $successObj;
-            $app->setUserState('com_staffvalidator.validate.data', null);
-        }
+        $this->populateCommonData();
         
         // Check for errors.
         if (count($errors = $this->get('Errors'))) {
@@ -51,7 +45,6 @@ class StaffValidatorViewValidate extends HtmlView {
 
         // Call the parent display to display the layout file
         parent::display($template);
-
     }
 
     protected function setupDocument() {
@@ -63,6 +56,20 @@ class StaffValidatorViewValidate extends HtmlView {
         $document->addScript(JURI::root() . $this->script);
         $document->addScript(JURI::root() . "/components/com_staffvalidator/views/validate/js/submit.js");
         Text::script('COM_STAFFVALIDATOR_CREATE_ERROR_UNACCEPTABLE');
+    }
+
+    protected function populateCommonData(): void {
+        $componentParams = ComponentHelper::getParams('com_staffvalidator');
+        $this->validatePreamble = $componentParams->get('validatePreamble', '');
+        $this->validatePostamble = $componentParams->get('validatePostamble', '');
+        
+        $app = Factory::getApplication();
+        $successObj = $app->getUserState('com_staffvalidator.validate.data');
+    
+        if ($successObj) {
+            $this->successObject = $successObj;
+            $app->setUserState('com_staffvalidator.validate.data', null);
+        }
     }
 
 }
