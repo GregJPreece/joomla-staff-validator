@@ -37,7 +37,7 @@
         </schemas>
     </update>
     
-    <files folder="components/com_staffvalidator">
+    <files folder="site/">
         <filename>index.html</filename>
         <filename>staffvalidator.php</filename>
         <filename>controller.php</filename>
@@ -48,15 +48,15 @@
     </files>
 
     <languages>
-        <language tag="en-GB">components/com_staffvalidator/language/en-GB/en-GB.com_staffvalidator.ini</language>
-        <language tag="en-GB">components/com_staffvalidator/language/en-GB/en-GB.com_staffvalidator.sys.ini</language>
+        <language tag="en-GB">site/language/en-GB/en-GB.com_staffvalidator.ini</language>
+        <language tag="en-GB">site/language/en-GB/en-GB.com_staffvalidator.sys.ini</language>
     </languages>
 
     <administration>
         <!-- Administration Menu Section -->
         <menu link='index.php?option=com_staffvalidator'>Staff Validator</menu>
         <!-- Administration Main File Copy Section -->
-        <files folder="administrator/components/com_staffvalidator">
+        <files folder="admin/">
             <filename>index.html</filename>
             <filename>staffvalidator.php</filename>
             <filename>controller.php</filename>
@@ -71,8 +71,8 @@
         </files>
 
         <languages>
-            <language tag="en-GB">administrator/components/com_staffvalidator/language/en-GB/en-GB.com_staffvalidator.ini</language>
-            <language tag="en-GB">administrator/components/com_staffvalidator/language/en-GB/en-GB.com_staffvalidator.sys.ini</language>
+            <language tag="en-GB">admin/language/en-GB/en-GB.com_staffvalidator.ini</language>
+            <language tag="en-GB">admin/language/en-GB/en-GB.com_staffvalidator.sys.ini</language>
         </languages>
     </administration>
 
