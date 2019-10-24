@@ -50,8 +50,7 @@ Created: 2019-03-27
     
     <target name="init-vagrant" depends="clean-vagrant">
         <echo>Initialising Vagrant symlink folder structure...</echo>
-        <mkdir dir="Projects/staffvalidator/administrator/components/com_staffvalidator" />
-        <mkdir dir="Projects/staffvalidator/components/com_staffvalidator" />
+        <mkdir dir="Projects/staffvalidator/" />
     </target>
     
     <target name="transpile-typescript">
@@ -61,17 +60,11 @@ Created: 2019-03-27
     
     <target name="build-for-vagrant" depends="init-vagrant,transpile-typescript">
         <echo>Copying extension into file structure for symlinking into Joomlatools box...</echo>
-        <copy todir="Projects/staffvalidator/administrator/components/com_staffvalidator">
-            <fileset dir="src/admin">
+        <copy todir="Projects/staffvalidator">
+            <fileset dir="src">
                 <include name="**/*" />
             </fileset>
         </copy>
-        <copy todir="Projects/staffvalidator/components/com_staffvalidator">
-            <fileset dir="src/site">
-                <include name="**/*" />
-            </fileset>
-        </copy>
-        <copy file="src/staffvalidator.xml" todir="Projects/staffvalidator" />
     </target>
     
     <target name="build-for-distribution" depends="init-distribution">
