@@ -33,6 +33,12 @@ class StaffValidatorViewValidate extends HtmlView {
         $this->form = $this->get('ValidationForm');
         $this->script = $this->get('Script'); 
         
+        $app = Factory::getApplication();
+        if ($this->getLayout() == 'success' && 
+                empty($app->getUserState('com_staffvalidator.validate.data'))) {
+            $this->setLayout('default');
+        }
+        
         $this->populateCommonData();
         
         // Check for errors.
