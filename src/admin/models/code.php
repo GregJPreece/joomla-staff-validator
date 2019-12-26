@@ -81,6 +81,10 @@ class StaffValidatorModelCode extends AdminModel {
         $binds['time_updated'] = time();
         $binds['updated_by'] = Factory::getUser()->get('id', 0);
         
+        if (isset($table->time_expires) && !is_numeric($table->time_expires)) {
+            $binds['time_expires'] = strtotime($table->time_expires);
+        }
+        
         if (empty($table->id)) {
             $binds['time_generated'] = time();
             $binds['created_by'] = $binds['updated_by'];
