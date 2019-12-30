@@ -16,7 +16,6 @@ defined('_JEXEC') or die('Restricted access');
 
 /**
  * StaffValidator Component Controller
- *
  * @since  0.0.1
  */
 class StaffValidatorController extends BaseController {
@@ -28,7 +27,14 @@ class StaffValidatorController extends BaseController {
         $layoutName = $this->input->getCmd('layout', 'default');
         
         $view = $this->getView($viewName, $viewFormat);
-        $view->setModel($this->getModel('Code'), true);
+        
+        // The validation views should use the "code" model
+        if ($view->getName() === 'validate') {
+            $view->setModel($this->getModel('Code'), true);
+        } else {
+            $view->setModel($this->getModel($view->getName()), true);
+        }
+        
         $view->setLayout($layoutName);
         $view->document = $document;
         $view->display();

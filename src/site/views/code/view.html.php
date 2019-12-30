@@ -32,7 +32,8 @@ class StaffValidatorViewCode extends HtmlView {
     public function display($template = null) {
 
         $this->form = $this->get('Form');
-        $this->script = $this->get('Script'); 
+        $this->script = $this->get('Script');
+        $this->item = $this->get('Item');        
 
         // Check that the user has permissions to create a new code
         $this->canDo = ContentHelper::getActions('com_staffvalidator');
@@ -60,8 +61,12 @@ class StaffValidatorViewCode extends HtmlView {
         HTMLHelper::_('behavior.framework');
         HTMLHelper::_('behavior.formvalidator');
         
+        $title = ($this->item->id == 0)
+            ? $title = Text::_('COM_STAFFVALIDATOR_CREATE_TITLE')
+            : $title = Text::_('COM_STAFFVALIDATOR_EDIT_TITLE');
+        
         $document = Factory::getDocument();
-        $document->setTitle(Text::_('COM_STAFFVALIDATOR_CREATE_TITLE'));
+        $document->setTitle($title);
         $document->addScript(Uri::root() . $this->script);
         $document->addScript(Uri::root() . "/administrator/components/com_staffvalidator"
                                           . "/views/code/js/submit.js");

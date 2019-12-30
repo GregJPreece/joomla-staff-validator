@@ -1,9 +1,14 @@
 <?php
 
-use Joomla\CMS\MVC\View\HtmlView;
-use Joomla\CMS\Language\Text;
-use Joomla\CMS\Toolbar\ToolbarHelper;
 use Joomla\CMS\Factory;
+use Joomla\CMS\Helper\ContentHelper;
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\MVC\View\HtmlView;
+use Joomla\CMS\Router\Route;
+use Joomla\CMS\Toolbar\ToolbarHelper;
+use Joomla\CMS\Toolbar\Toolbar;
+use Joomla\CMS\Uri\Uri;
 
 /**
  * @package     Joomla.Administrator
@@ -29,6 +34,15 @@ class StaffValidatorViewCodes extends HtmlView {
      */
     function display($tpl = null) {
 
+        $loggedIn = Factory::getUser()->id != 0;
+        
+        // Check that the user has permissions to list codes
+        if (!$loggedIn) {
+            $app = Factory::getApplication(); 
+            $app->redirect(Route::_('index.php?option=com_users&view=login'));
+            return;
+        }
+        
         $state = $this->get('State');
 
         // Get data from the model/state
@@ -42,31 +56,41 @@ class StaffValidatorViewCodes extends HtmlView {
             throw new RuntimeException(implode('<br />', $errors), 500);
         }
 
-        // Set up the document
-        $this->addToolbar();
+        // Set up the document        
         $this->setupDocument();
 
         // Display the template
         parent::display($tpl);
     }
 
-    protected function addToolbar(): void {
-        $title = Text::_('COM_STAFFVALIDATOR_MANAGER_TITLE');
+    protected function renderToolbar(): string {
+        $this->canDo = ContentHelper::getActions('com_staffvalidator');
+        $title = Text::_('COM_STAFFVALIDATOR_LIST_TITLE');
         $title .= ($this->pagination->total) ? ' (<span class="list-count">' . $this->pagination->total . '</span>)' : '';
 
         ToolbarHelper::title($title);
-        ToolbarHelper::addNew('code.add');
-        ToolbarHelper::editList('code.edit');
-        ToolbarHelper::deleteList('COM_STAFFVALIDATOR_MANAGER_DELETE_CONFIRM', 'codes.delete');
-        
-        if (Factory::getUser()->authorise('core.admin', 'com_staffvalidator')) {
-            ToolbarHelper::preferences('com_staffvalidator');
+
+        if ($this->canDo->get('core.create')) {
+            ToolbarHelper::addNew('code.add', 'COM_STAFFVALIDATOR_BUTTON_CODE_NEW');
         }
+        
+        if ($this->canDo->get('core.edit') || $this->canDo->get('core.edit.own')) {
+            ToolbarHelper::editList('code.edit', 'COM_STAFFVALIDATOR_BUTTON_CODE_EDIT');
+        }
+        
+        if ($this->canDo->get('core.delete')) {
+            ToolbarHelper::deleteList('COM_STAFFVALIDATOR_DELETE_CONFIRM', 'codes.delete', 'COM_STAFFVALIDATOR_BUTTON_CODE_DELETE');
+        }
+        
+        return Toolbar::getInstance()->render();
     }
 
     protected function setupDocument(): void {
+        HTMLHelper::_('formbehavior.chosen', 'select');
+        
         $document = Factory::getDocument();
-        $document->setTitle(Text::_('COM_STAFFVALIDATOR_MANAGER_TITLE'));
+        $document->setTitle(Text::_('COM_STAFFVALIDATOR_LIST_TITLE'));
+        $document->addStyleSheet(Uri::root() . '/components/com_staffvalidator/views/codes/css/toolbar.css');
     }
 
 }

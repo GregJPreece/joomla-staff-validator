@@ -1,5 +1,6 @@
 <?php
 
+
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Associations;
 use Joomla\CMS\Language\Text;
@@ -28,7 +29,7 @@ class StaffValidatorModelCodes extends ListModel {
         ];
         parent::__construct($config);
     }
-    
+
     /**
      * Method to delete one or more records.
      * (Swiped from Joomla's AdminModel class)
@@ -142,24 +143,15 @@ class StaffValidatorModelCodes extends ListModel {
      * @return string An SQL query
      */
     protected function getListQuery() {
-        // Initialize variables.
+        // Initialize variables
         $db    = Factory::getDbo();
         $query = $db->getQuery(true);
+        $myId = Factory::getUser()->id;
         
         // Create the base select statement.
-        $query->select([
-            'codes.*',
-            $db->qn('owner.name', 'ownerName'),
-            $db->qn('owner.username', 'ownerUsername'),
-            $db->qn('creator.name', 'creatorName'),
-            $db->qn('creator.username', 'creatorUsername'),
-            $db->qn('updater.name', 'updaterName'),
-            $db->qn('updater.username', 'updaterUsername')
-        ])
+        $query->select(['codes.*'])
         ->from($db->qn('#__staffvalidator_codes', 'codes'))
-        ->innerJoin($db->qn('#__users', 'owner') . ' ON ' . $db->qn('codes.user_id') . ' = ' . $db->qn('owner.id'))
-        ->innerJoin($db->qn('#__users', 'creator') . ' ON ' . $db->qn('codes.created_by') . ' = ' . $db->qn('creator.id'))
-        ->innerJoin($db->qn('#__users', 'updater') . ' ON ' . $db->qn('codes.user_id') . ' = ' . $db->qn('updater.id'));
+        ->where([$db->qn('codes.user_id') . ' = ' . $db->q($myId)]);
 
         $query->order(
             $db->escape($this->getState('list.ordering', 'time_expires'))
@@ -173,4 +165,5 @@ class StaffValidatorModelCodes extends ListModel {
     protected function populateState($ordering = 'time_expires', $direction = 'DESC') {
         parent::populateState($ordering, $direction);
     }
+    
 }

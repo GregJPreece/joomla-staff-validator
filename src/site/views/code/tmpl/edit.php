@@ -14,6 +14,10 @@ use Joomla\CMS\Router\Route;
 
 defined('_JEXEC') or die('Restricted access');
 
+$formLegend = ($this->item->id == 0)
+    ? Text::_('COM_STAFFVALIDATOR_CREATE_LEGEND')
+    : Text::_('COM_STAFFVALIDATOR_EDIT_LEGEND');
+
 ?>
 <form action="<?= Route::_('index.php?option=com_staffvalidator'); ?>"
     method="post" name="adminForm" id="adminForm" class="form-validate">
@@ -24,7 +28,7 @@ defined('_JEXEC') or die('Restricted access');
 
     <div class="form-horizontal">
         <fieldset class="adminform">
-            <legend><?= Text::_('COM_STAFFVALIDATOR_CREATE_LEGEND') ?></legend>
+            <legend><?= $formLegend ?></legend>
             <div class="row-fluid">
                 <div class="span6">
                     <?= $this->form->renderFieldset('validation-code');  ?>
