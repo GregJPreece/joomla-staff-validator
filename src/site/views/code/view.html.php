@@ -67,7 +67,7 @@ class StaffValidatorViewCode extends HtmlView {
         
         $title = ($this->item->id == 0)
             ? $title = Text::_('COM_STAFFVALIDATOR_CREATE_TITLE')
-            : $title = Text::_('COM_STAFFVALIDATOR_EDIT_TITLE');
+            : $title = Text::_('COM_STAFFVALIDATOR_EDIT_TITLE')  . ' (' . $this->item->code . ')';
         
         $document = Factory::getDocument();
         $document->setTitle($title);

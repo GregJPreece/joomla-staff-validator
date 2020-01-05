@@ -16,7 +16,7 @@ defined('_JEXEC') or die('Restricted access');
 
 $formLegend = ($this->item->id == 0)
     ? Text::_('COM_STAFFVALIDATOR_CREATE_LEGEND')
-    : Text::_('COM_STAFFVALIDATOR_EDIT_LEGEND');
+    : Text::_('COM_STAFFVALIDATOR_EDIT_LEGEND')  . ' (' . $this->item->code . ')';
 
 ?>
 <form action="<?= Route::_('index.php?option=com_staffvalidator'); ?>"

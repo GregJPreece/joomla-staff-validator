@@ -47,14 +47,10 @@ class StaffValidatorViewCode extends HtmlView {
         $input = Factory::getApplication()->input;
         $input->set('hidemainmenu', true);
 
-
         $isNew = ($this->item->id == 0);
-
-        if ($isNew) {
-            $title = Text::_('COM_STAFFVALIDATOR_MANAGER_TITLE_CODE_NEW');
-        } else {
-            $title = Text::_('COM_STAFFVALIDATOR_MANAGER_TITLE_CODE_EDIT');
-        }
+        $title = ($isNew)
+            ? Text::_('COM_STAFFVALIDATOR_MANAGER_TITLE_CODE_NEW')
+            : Text::_('COM_STAFFVALIDATOR_MANAGER_TITLE_CODE_EDIT')  . ' (' . $this->item->code . ')';
 
         ToolbarHelper::title($title, 'code');
         ToolbarHelper::save('code.save');
@@ -73,7 +69,7 @@ class StaffValidatorViewCode extends HtmlView {
         $document = Factory::getDocument();
         $document->setTitle(($isNew)
                 ? Text::_('COM_STAFFVALIDATOR_MANAGER_TITLE_CODE_NEW')
-                : Text::_('COM_STAFFVALIDATOR_MANAGER_TITLE_CODE_EDIT'));
+                : Text::_('COM_STAFFVALIDATOR_MANAGER_TITLE_CODE_EDIT') . ' (' . $this->item->code . ')');
         $document->addScript(Uri::root() . 
                 '/administrator/components/com_staffvalidator/views/code/js/submit.js');
         Text::script('COM_STAFFVALIDATOR_MANAGER_CODE_EDIT_VALIDATION_FAIL');
