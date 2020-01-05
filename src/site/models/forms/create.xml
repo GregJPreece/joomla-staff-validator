@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <form>
-    <fieldset name="validation-code">
+    <fieldset name="validation-code" 
+              addrulepath="components/com_staffvalidator/models/rules">
         <field  name="id" 
                 type="hidden"
                 default="0" />
         <field  name="code" 
                 type="text"
+                size="12"
+                maxlength="10"
                 required="true"
                 showon="id:0"
+                validate="code"
+                pattern="[a-zA-Z0-9]{4,10}"
+                class="text_area validate-code"
+                message="COM_STAFFVALIDATOR_FIELD_CODE_VALUE_ERR"
                 label="COM_STAFFVALIDATOR_FIELD_CODE_VALUE_LABEL"
                 description="COM_STAFFVALIDATOR_FIELD_CODE_VALUE_DESC"
                 hint="COM_STAFFVALIDATOR_FIELD_CODE_VALUE_DESC" />
