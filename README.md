@@ -25,7 +25,7 @@ project from a terminal and not a GUI, so that you can provide passwords if need
 ## First Run
 
 The JoomlaTools Vagrant box is an excellent tool, but being an Ubuntu 14.04 box it's 
-also getting quite long in the tooth and starting to show cracks. On first run, you 
+also getting quite long in the tooth and starting to show cracks. (Note: it seems [this will be resolved soon](https://github.com/joomlatools/joomlatools-vagrant/issues/158)!) On first run, you 
 will encounter issues with Virtualbox Guest Additions not being able to correctly 
 install itself, because the box is missing the required kernel headers. As a
 workaround for this, I recommend the following procedure for first run with this
