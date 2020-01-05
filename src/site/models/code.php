@@ -83,14 +83,14 @@ class StaffValidatorModelCode extends AdminModel {
     public function getValidCode(string $code) {
         $db = Factory::getDbo();
         $query = $db->getQuery(true);
-        
+
         $query->select(['codes.*', 'users.name', 'users.username'])
               ->from($db->qn('#__staffvalidator_codes', 'codes'))
               ->innerJoin($db->qn('#__users', 'users') . ' ON ' . $db->qn('codes.user_id') . ' = ' . $db->qn('users.id'))
               ->where(
                       $db->qn('codes.code') . ' = ' . $db->q(trim($code)) . 
                       ' AND (' . $db->qn('codes.time_expires') . ' IS NULL' . 
-                      ' OR ' . $db->qn('codes.time_expires') . ' < ' . time() . ')');
+                      ' OR ' . $db->qn('codes.time_expires') . ' > ' . time() . ')');
         
         $db->setQuery($query);
 
