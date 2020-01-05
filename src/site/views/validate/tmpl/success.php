@@ -21,6 +21,15 @@ defined('_JEXEC') or die('Restricted access');
     <strong><?= $this->successObject->name ?></strong>
 </p>
 
+<?php if (!empty($this->successObject->note)): ?>
+<p>
+    <?= Text::_('COM_STAFFVALIDATOR_VALIDATE_NOTE') ?>
+</p>
+<blockquote>
+    <?= $this->successObject->note ?>
+</blockquote>
+<?php endif; ?>
+
 <?php if (!empty($this->validatePostamble)): ?>
     <p class="validation-preamble">
         <?= $this->validatePostamble ?>
