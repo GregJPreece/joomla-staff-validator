@@ -2,9 +2,11 @@
 
 use Joomla\CMS\MVC\View\HtmlView;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Helper\ContentHelper;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
 
 /**
@@ -44,11 +46,13 @@ class StaffValidatorViewCode extends HtmlView {
             return;
         }
 
+        $this->checkCodeLimit();
+        
         // Check for errors.
         if (count($errors = $this->get('Errors'))) {
             throw new Exception(implode("\n", $errors), 500);
-        }
-
+        }        
+        
         // Set properties of the html document
         $this->setupDocument();
 
@@ -71,6 +75,30 @@ class StaffValidatorViewCode extends HtmlView {
         $document->addScript(Uri::root() . "/administrator/components/com_staffvalidator"
                                           . "/views/code/js/submit.js");
         Text::script('COM_STAFFVALIDATOR_CREATE_ERROR_UNACCEPTABLE');
+    }
+    
+    protected function checkCodeLimit() {
+        $db = Factory::getDbo();
+        $myId = Factory::getUser()->id;        
+        
+        $query = $db->getQuery(true)
+            ->select('COUNT(*) as count')
+            ->from($db->qn('#__staffvalidator_codes', 'codes'))
+            ->where([$db->qn('codes.user_id') . ' = ' . $db->q($myId)]);
+        
+        $itemCount = $db->setQuery($query)->loadResult();
+        
+        // Check the user is allowed to make more codes
+        $params = ComponentHelper::getParams("com_staffvalidator");
+        $codeLimit = $params->get('maxCodesPerUser', null);
+        $overCodeLimit = ($codeLimit !== null) && (intval($codeLimit) <= $itemCount);
+        
+        if ($overCodeLimit) {
+            Factory::getApplication()->redirect(
+                Route::_('index.php?option=com_staffvalidator&view=codes')
+            );
+            return;
+        }
     }
 
 }

@@ -1,6 +1,7 @@
 <?php
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Helper\ContentHelper;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
@@ -27,6 +28,12 @@ defined('_JEXEC') or die('Restricted access');
 class StaffValidatorViewCodes extends HtmlView {
     
     /**
+     * Whether the user has reached the allowed codes limit
+     * @var bool
+     */
+    public $overCodeLimit = false;
+    
+    /**
      * Display the main Staff Validator view
      *
      * @param   string  $tpl  The name of the template file to parse; automatically searches through the template paths.
@@ -51,6 +58,10 @@ class StaffValidatorViewCodes extends HtmlView {
         $this->sortColumn = $state->get('list.ordering');
         $this->sortDirection = $state->get('list.direction');
 
+        $params = ComponentHelper::getParams("com_staffvalidator");
+        $codeLimit = $params->get('maxCodesPerUser', null);
+        $this->overCodeLimit = ($codeLimit !== null) && (intval($codeLimit) <= count($this->items));
+        
         // Check for errors.
         if (count($errors = $this->get('Errors'))) {
             throw new RuntimeException(implode('<br />', $errors), 500);
@@ -70,7 +81,7 @@ class StaffValidatorViewCodes extends HtmlView {
 
         ToolbarHelper::title($title);
 
-        if ($this->canDo->get('core.create')) {
+        if ($this->canDo->get('core.create') && !$this->overCodeLimit) {
             ToolbarHelper::addNew('code.add', 'COM_STAFFVALIDATOR_BUTTON_CODE_NEW');
         }
         
@@ -91,6 +102,10 @@ class StaffValidatorViewCodes extends HtmlView {
         $document = Factory::getDocument();
         $document->setTitle(Text::_('COM_STAFFVALIDATOR_LIST_TITLE'));
         $document->addStyleSheet(Uri::root() . '/components/com_staffvalidator/views/codes/css/toolbar.css');
+        
+        if ($this->overCodeLimit) {
+            Factory::getApplication()->enqueueMessage(Text::_('COM_STAFFVALIDATOR_LIST_CODE_LIMIT'), 'notice');
+        }
     }
 
 }
