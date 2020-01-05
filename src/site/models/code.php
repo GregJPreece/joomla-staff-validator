@@ -90,6 +90,7 @@ class StaffValidatorModelCode extends AdminModel {
               ->where(
                       $db->qn('codes.code') . ' = ' . $db->q(trim($code)) . 
                       ' AND (' . $db->qn('codes.time_expires') . ' IS NULL' . 
+                      ' OR ' . $db->qn('codes.time_expires') . ' = 0' .
                       ' OR ' . $db->qn('codes.time_expires') . ' > ' . time() . ')');
         
         $db->setQuery($query);
@@ -126,7 +127,8 @@ class StaffValidatorModelCode extends AdminModel {
         $binds['updated_by'] = Factory::getUser()->get('id', 0);
 
         if (isset($table->time_expires) && !is_numeric($table->time_expires)) {
-            $binds['time_expires'] = strtotime($table->time_expires);
+            $unixTime = strtotime($table->time_expires);
+            $binds['time_expires'] = ($unixTime > 0) ? $unixTime : null;
         }
         
         if (empty($table->id)) {
