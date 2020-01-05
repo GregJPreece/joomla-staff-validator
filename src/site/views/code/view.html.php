@@ -78,6 +78,12 @@ class StaffValidatorViewCode extends HtmlView {
     }
     
     protected function checkCodeLimit() {
+        
+        // Ignore code limit when editing
+        if ($this->item->id > 0) {
+            return;
+        }
+        
         $db = Factory::getDbo();
         $myId = Factory::getUser()->id;        
         
@@ -97,8 +103,8 @@ class StaffValidatorViewCode extends HtmlView {
             Factory::getApplication()->redirect(
                 Route::_('index.php?option=com_staffvalidator&view=codes')
             );
-            return;
         }
+        
     }
 
 }
