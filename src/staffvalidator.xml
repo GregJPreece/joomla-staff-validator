@@ -3,13 +3,13 @@
 
     <name>Staff Validator</name>
     <!-- The following elements are optional and free of formatting constraints -->
-    <creationDate>January 2019</creationDate>
+    <creationDate>January 2020</creationDate>
     <author>Greg J Preece</author>
     <authorUrl>https://preece.ca</authorUrl>
     <copyright>Greg J Preece</copyright>
     <license>GPL v3</license>
     <!--  The version string is recorded in the components table -->
-    <version>0.0.13</version>
+    <version>1.0.0</version>
     <!-- The description is optional and defaults to the name -->
     <description>
         A helper component to allow site members to validate their identities when contacting
