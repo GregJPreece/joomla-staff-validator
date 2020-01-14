@@ -1,6 +1,5 @@
 <?php
 
-
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Associations;
 use Joomla\CMS\Language\Text;
@@ -16,6 +15,9 @@ use Joomla\CMS\Table\Table;
  * @copyright   Copyright (C) 2019 Greg J Preece. All rights reserved.
  * @license     GNU General Public License version 3; see LICENSE
  */
+
+// No direct access to this file
+defined('_JEXEC') or die('Restricted access');
 
  /**
  * Staff Validator code list Model
