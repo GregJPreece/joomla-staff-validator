@@ -21,6 +21,10 @@
         authenticity and the identity of the user who generated it.
     </description>
 
+    <updateservers>
+        <server type="extension" priority="1" name="Github update server">https://raw.githubusercontent.com/GregJPreece/joomla-staff-validator/master/update.xml</server>
+    </updateservers>
+
     <install> <!-- Runs on install -->
         <sql>
             <file driver="mysql" charset="utf8">sql/install.mysql.utf8.sql</file>
