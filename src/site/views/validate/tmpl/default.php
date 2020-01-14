@@ -5,7 +5,7 @@ use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
 
 /**
- * @package     Joomla.Administrator
+ * @package     Joomla.Site
  * @subpackage  com_staffvalidator
  *
  * @copyright   Copyright (C) 2019 Greg J Preece. All rights reserved.

@@ -7,7 +7,7 @@ use Joomla\CMS\Language\Text;
 use Joomla\CMS\Component\ComponentHelper;
 
 /**
- * @package     Joomla.Administrator
+ * @package     Joomla.Site
  * @subpackage  com_staffvalidator
  *
  * @copyright   Copyright (C) 2019 Greg J Preece. All rights reserved.
@@ -16,6 +16,9 @@ use Joomla\CMS\Component\ComponentHelper;
 
 defined('_JEXEC') or die('Restricted access');
 
+/**
+ * View for the user identity validation form
+ */
 class StaffValidatorViewValidate extends HtmlView {
 
     protected $form = null;

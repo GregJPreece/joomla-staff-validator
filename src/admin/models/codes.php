@@ -16,7 +16,10 @@ use Joomla\CMS\Table\Table;
  * @license     GNU General Public License version 3; see LICENSE
  */
 
- /**
+// No direct access to this file
+defined('_JEXEC') or die('Restricted access');
+
+/**
  * Staff Validator code list Model
  */
 class StaffValidatorModelCodes extends ListModel {

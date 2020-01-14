@@ -7,7 +7,7 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Date\Date;
 
 /**
- * @package     Joomla.Administrator
+ * @package     Joomla.Site
  * @subpackage  com_staffvalidator
  *
  * @copyright   Copyright (C) 2019 Greg J Preece. All rights reserved.
