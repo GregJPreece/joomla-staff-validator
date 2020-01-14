@@ -12,10 +12,16 @@ Created: 2019-03-27
             schematypens="http://www.w3.org/2001/XMLSchema" ?>
 
 <project name="Joomla Staff Validator" default="build-for-vagrant">
-    <target name="check-vagrant">
+
+    <target name="init">
+        <echo>Loading build properties...</echo>
+        <property file="build.properties" />
+    </target>
+
+    <target name="check-vagrant" depends="init">
         <echo>Checking Joomlatools box has been built</echo>
-        <available file="./Projects" type="dir" property="vagrant.projects" />
-        <available file="./www" type="dir" property="vagrant.www" />
+        <available file="${vagrant.projectsdir}" type="dir" property="vagrant.projects" />
+        <available file="${vagrant.wwwdir}" type="dir" property="vagrant.www" />
         
         <fail message="Vagrant box has not yet been built, cannot install to it">
             <condition>
@@ -31,36 +37,36 @@ Created: 2019-03-27
         </fail>
     </target>
     
-    <target name="clean-distribution">
+    <target name="clean-distribution" depends="init">
         <echo>Cleaning distribution folder...</echo>
-        <delete includeemptydirs="true" dir="dist" />
+        <delete includeemptydirs="true" dir="${project.distdir}" />
     </target>
     
     <target name="clean-vagrant" depends="check-vagrant">
         <echo>Cleaning Vagrant symlink folder...</echo>
-        <delete includeemptydirs="true" dir="Projects/staffvalidator" />
-    </target>
-
-    <target name="init-distribution" depends="clean-distribution">
-        <echo>Initialising distribution folder structure...</echo>
-        <mkdir dir="dist" />
-        <mkdir dir="dist/src" />
-        <mkdir dir="dist/bin" />
+        <delete includeemptydirs="true" dir="${vagrant.projectsdir}/${project.elementname}" />
     </target>
     
-    <target name="init-vagrant" depends="clean-vagrant">
+    <target name="init-distribution" depends="init, clean-distribution">
+        <echo>Initialising distribution folder structure...</echo>
+        <mkdir dir="${project.distdir}" />
+        <mkdir dir="${project.distdir}/src" />
+        <mkdir dir="${project.distdir}/bin" />
+    </target>
+    
+    <target name="init-vagrant" depends="init, clean-vagrant">
         <echo>Initialising Vagrant symlink folder structure...</echo>
-        <mkdir dir="Projects/staffvalidator/" />
+        <mkdir dir="${vagrant.projectsdir}/${project.elementname}" />
     </target>
     
     <target name="transpile-typescript">
         <echo>Transpiling Typescript...</echo>
-        <exec command="vendor/npm-asset/typescript/bin/tsc" dir="." /> 
+        <exec command="${typescript-bin}" dir="." /> 
     </target>
     
     <target name="build-for-vagrant" depends="init-vagrant,transpile-typescript">
         <echo>Copying extension into file structure for symlinking into Joomlatools box...</echo>
-        <copy todir="Projects/staffvalidator">
+        <copy todir="${vagrant.projectsdir}/${project.elementname}">
             <fileset dir="src">
                 <include name="**/*" />
             </fileset>
@@ -70,15 +76,15 @@ Created: 2019-03-27
     <target name="build-for-distribution" depends="init-distribution">
         <echo>Copying source code to package staging...</echo>
         
-        <copy todir="dist/src">
+        <copy todir="${project.distdir}/src">
             <fileset dir="src">
                 <include name="**/*" />
             </fileset>
         </copy>
         
         <echo>Creating archive...</echo>
-        <zip destfile="dist/bin/joomla-staff-validator.zip">
-            <fileset dir="dist/src">
+        <zip destfile="${project.distdir}/bin/${project.zipfile}">
+            <fileset dir="${project.distdir}/src">
                 <include name="**/*" />
             </fileset>
         </zip>
