@@ -8,6 +8,7 @@
 Vagrant.configure("2") do |config|
 
   config.vm.box = "joomlatools/box"
+  config.vm.box_version = ">= 1.6"
   config.vm.hostname = "joomlatools"
 
   # VirtualBox configuration:
