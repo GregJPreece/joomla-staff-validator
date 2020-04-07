@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" version="3.0" method="upgrade">
 
-    <name>Staff Validator</name>
+    <name>Greg's Staff Validator</name>
     <!-- The following elements are optional and free of formatting constraints -->
     <creationDate>January 2020</creationDate>
     <author>Greg J Preece</author>
@@ -58,7 +58,7 @@
 
     <administration>
         <!-- Administration Menu Section -->
-        <menu link='index.php?option=com_staffvalidator'>Staff Validator</menu>
+        <menu link='index.php?option=com_staffvalidator'>Greg's Staff Validator</menu>
         <!-- Administration Main File Copy Section -->
         <files folder="admin/">
             <filename>index.html</filename>
