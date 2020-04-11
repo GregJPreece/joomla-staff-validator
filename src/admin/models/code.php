@@ -74,10 +74,6 @@ class GregsStaffValidatorModelCode extends AdminModel {
      * @param StaffValidatorTableCode $table Table to prepare
      */
     protected function prepareTable($table) {
-        $binds = [
-            'user_id' => Factory::getUser()->id            
-        ];
-        
         $binds['time_updated'] = time();
         $binds['updated_by'] = Factory::getUser()->get('id', 0);
                 
