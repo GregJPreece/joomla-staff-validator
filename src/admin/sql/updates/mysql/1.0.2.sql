@@ -1,0 +1,1 @@
+ RENAME TABLE `#__staffvalidator_codes` TO `#__gregsstaffvalidator_codes`; 

@@ -8,7 +8,7 @@ use Joomla\CMS\Component\ComponentHelper;
 
 /**
  * @package     Joomla.Site
- * @subpackage  com_staffvalidator
+ * @subpackage  com_gregsstaffvalidator
  *
  * @copyright   Copyright (C) 2019 Greg J Preece. All rights reserved.
  * @license     GNU General Public License version 3; see LICENSE
@@ -19,7 +19,7 @@ defined('_JEXEC') or die('Restricted access');
 /**
  * View for the user identity validation form
  */
-class StaffValidatorViewValidate extends HtmlView {
+class GregsStaffValidatorViewValidate extends HtmlView {
 
     protected $form = null;
 
@@ -38,7 +38,7 @@ class StaffValidatorViewValidate extends HtmlView {
         
         $app = Factory::getApplication();
         if ($this->getLayout() == 'success' && 
-                empty($app->getUserState('com_staffvalidator.validate.data'))) {
+                empty($app->getUserState('com_gregsstaffvalidator.validate.data'))) {
             $this->setLayout('default');
         }
         
@@ -61,23 +61,23 @@ class StaffValidatorViewValidate extends HtmlView {
         HTMLHelper::_('behavior.formvalidator');
         
         $document = Factory::getDocument();
-        $document->setTitle(JText::_('COM_STAFFVALIDATOR_CREATE_TITLE'));
+        $document->setTitle(JText::_('COM_GREGSSTAFFVALIDATOR_CREATE_TITLE'));
         $document->addScript(JURI::root() . $this->script);
-        $document->addScript(JURI::root() . "/components/com_staffvalidator/views/validate/js/submit.js");
-        Text::script('COM_STAFFVALIDATOR_CREATE_ERROR_UNACCEPTABLE');
+        $document->addScript(JURI::root() . "/components/com_gregsstaffvalidator/views/validate/js/submit.js");
+        Text::script('COM_GREGSSTAFFVALIDATOR_CREATE_ERROR_UNACCEPTABLE');
     }
 
     protected function populateCommonData(): void {
-        $componentParams = ComponentHelper::getParams('com_staffvalidator');
+        $componentParams = ComponentHelper::getParams('com_gregsstaffvalidator');
         $this->validatePreamble = $componentParams->get('validatePreamble', '');
         $this->validatePostamble = $componentParams->get('validatePostamble', '');
         
         $app = Factory::getApplication();
-        $successObj = $app->getUserState('com_staffvalidator.validate.data');
+        $successObj = $app->getUserState('com_gregsstaffvalidator.validate.data');
     
         if ($successObj) {
             $this->successObject = $successObj;
-            $app->setUserState('com_staffvalidator.validate.data', null);
+            $app->setUserState('com_gregsstaffvalidator.validate.data', null);
         }
     }
 

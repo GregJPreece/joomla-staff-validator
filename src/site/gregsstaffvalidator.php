@@ -5,7 +5,7 @@ use Joomla\CMS\Factory;
 
 /**
  * @package     Joomla.Site
- * @subpackage  com_staffvalidator
+ * @subpackage  com_gregsstaffvalidator
  *
  * @copyright   Copyright (C) 2019 Greg J Preece. All rights reserved.
  * @license     GNU General Public License version 3; see LICENSE
@@ -15,7 +15,7 @@ use Joomla\CMS\Factory;
 defined('_JEXEC') or die('Restricted access');
 
 // Get an instance of the controller prefixed by StaffValidator
-$controller = BaseController::getInstance('StaffValidator');
+$controller = BaseController::getInstance('GregsStaffValidator');
 
 // Perform the Request task
 $input = Factory::getApplication()->input;

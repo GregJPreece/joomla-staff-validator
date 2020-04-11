@@ -11,7 +11,7 @@ use Joomla\CMS\Uri\Uri;
 
 /**
  * @package     Joomla.Site
- * @subpackage  com_staffvalidator
+ * @subpackage  com_gregsstaffvalidator
  *
  * @copyright   Copyright (C) 2019 Greg J Preece. All rights reserved.
  * @license     GNU General Public License version 3; see LICENSE
@@ -19,7 +19,7 @@ use Joomla\CMS\Uri\Uri;
 
 defined('_JEXEC') or die('Restricted access');
 
-class StaffValidatorViewCode extends HtmlView {
+class GregsStaffValidatorViewCode extends HtmlView {
 
     protected $form = null;
 
@@ -38,7 +38,7 @@ class StaffValidatorViewCode extends HtmlView {
         $this->item = $this->get('Item');        
 
         // Check that the user has permissions to create a new code
-        $this->canDo = ContentHelper::getActions('com_staffvalidator');
+        $this->canDo = ContentHelper::getActions('com_gregsstaffvalidator');
         if (!($this->canDo->get('core.create'))) {
             $app = Factory::getApplication(); 
             $app->enqueueMessage(Text::_('JERROR_ALERTNOAUTHOR'), 'error');
@@ -66,15 +66,15 @@ class StaffValidatorViewCode extends HtmlView {
         HTMLHelper::_('behavior.formvalidator');
         
         $title = ($this->item->id == 0)
-            ? $title = Text::_('COM_STAFFVALIDATOR_CREATE_TITLE')
-            : $title = Text::_('COM_STAFFVALIDATOR_EDIT_TITLE')  . ' (' . $this->item->code . ')';
+            ? $title = Text::_('COM_GREGSSTAFFVALIDATOR_CREATE_TITLE')
+            : $title = Text::_('COM_GREGSSTAFFVALIDATOR_EDIT_TITLE')  . ' (' . $this->item->code . ')';
         
         $document = Factory::getDocument();
         $document->setTitle($title);
         $document->addScript(Uri::root() . $this->script);
-        $document->addScript(Uri::root() . "/administrator/components/com_staffvalidator"
+        $document->addScript(Uri::root() . "/administrator/components/com_gregsstaffvalidator"
                                           . "/views/code/js/submit.js");
-        Text::script('COM_STAFFVALIDATOR_CREATE_ERROR_UNACCEPTABLE');
+        Text::script('COM_GREGSSTAFFVALIDATOR_CREATE_ERROR_UNACCEPTABLE');
     }
     
     protected function checkCodeLimit() {
@@ -89,19 +89,19 @@ class StaffValidatorViewCode extends HtmlView {
         
         $query = $db->getQuery(true)
             ->select('COUNT(*) as count')
-            ->from($db->qn('#__staffvalidator_codes', 'codes'))
+            ->from($db->qn('#__gregsstaffvalidator_codes', 'codes'))
             ->where([$db->qn('codes.user_id') . ' = ' . $db->q($myId)]);
         
         $itemCount = $db->setQuery($query)->loadResult();
         
         // Check the user is allowed to make more codes
-        $params = ComponentHelper::getParams("com_staffvalidator");
+        $params = ComponentHelper::getParams("com_gregsstaffvalidator");
         $codeLimit = $params->get('maxCodesPerUser', null);
         $overCodeLimit = ($codeLimit !== null) && (intval($codeLimit) <= $itemCount);
         
         if ($overCodeLimit) {
             Factory::getApplication()->redirect(
-                Route::_('index.php?option=com_staffvalidator&view=codes')
+                Route::_('index.php?option=com_gregsstaffvalidator&view=codes')
             );
         }
         

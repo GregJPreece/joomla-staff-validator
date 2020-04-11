@@ -11,7 +11,7 @@ use Joomla\CMS\Component\ComponentHelper;
 
 /**
  * @package     Joomla.Site
- * @subpackage  com_staffvalidator
+ * @subpackage  com_gregsstaffvalidator
  *
  * @copyright   Copyright (C) 2019 Greg J Preece. All rights reserved.
  * @license     GNU General Public License version 3; see LICENSE
@@ -23,9 +23,9 @@ defined('_JEXEC') or die('Restricted access');
  * Front-end code-creation controller
  *
  * @package     Joomla.Site
- * @subpackage  com_staffvalidator
+ * @subpackage  com_gregsstaffvalidator
  */
-class StaffValidatorControllerCode extends FormController {
+class GregsStaffValidatorControllerCode extends FormController {
     
     public function cancel($key = null) {
         parent::cancel($key);
@@ -33,7 +33,7 @@ class StaffValidatorControllerCode extends FormController {
         // set up the redirect back to the same form
         $this->setRedirect(
             (string) Uri::getInstance(), 
-            Text::_('COM_STAFFVALIDATOR_CREATE_CANCELLED')
+            Text::_('COM_GREGSSTAFFVALIDATOR_CREATE_CANCELLED')
         );
     }
     
@@ -53,7 +53,7 @@ class StaffValidatorControllerCode extends FormController {
         $currentUri = (string) Uri::getInstance();
 
         // Check that this user is allowed to add a new record
-        if (!Factory::getUser()->authorise( "core.create", "com_staffvalidator")) {
+        if (!Factory::getUser()->authorise( "core.create", "com_gregsstaffvalidator")) {
             $app->enqueueMessage(Text::_('JERROR_ALERTNOAUTHOR'), 'error');
             $app->setHeader('status', 403, true);
             return;
@@ -114,7 +114,7 @@ class StaffValidatorControllerCode extends FormController {
 
         $this->setRedirect(
             $currentUri,
-            Text::_('COM_STAFFVALIDATOR_CREATE_SUCCESS')
+            Text::_('COM_GREGSSTAFFVALIDATOR_CREATE_SUCCESS')
         );
 
         return true;
@@ -133,10 +133,10 @@ class StaffValidatorControllerCode extends FormController {
         $foundCode = $model->getValidCode($formData->getAlnum('code'));
         
         if (!$foundCode) {
-            $componentParams = ComponentHelper::getParams('com_staffvalidator');
+            $componentParams = ComponentHelper::getParams('com_gregsstaffvalidator');
             $errorTextParam = $componentParams->get('validateFailureText');
             $errorText = (empty($errorTextParam)) 
-                    ? Text::_('COM_STAFFVALIDATOR_VALIDATE_ERROR') 
+                    ? Text::_('COM_GREGSSTAFFVALIDATOR_VALIDATE_ERROR') 
                     : $errorTextParam;
             
             $this->setRedirect(Uri::getInstance(), $errorText, 'error');
@@ -144,8 +144,8 @@ class StaffValidatorControllerCode extends FormController {
         } else {
             $app->setUserState("$this->option.validate.data", $foundCode);
             $this->setRedirect(
-                Route::_('index.php?option=com_staffvalidator&view=validate&layout=success'),
-                Text::_('COM_STAFFVALIDATOR_VALIDATE_SUCCESS')
+                Route::_('index.php?option=com_gregsstaffvalidator&view=validate&layout=success'),
+                Text::_('COM_GREGSSTAFFVALIDATOR_VALIDATE_SUCCESS')
             );
             return true;
         }

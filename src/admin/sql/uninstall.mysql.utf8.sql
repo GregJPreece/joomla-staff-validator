@@ -1,1 +1,1 @@
-DROP TABLE IF EXISTS `#__staffvalidator_codes`;
+DROP TABLE IF EXISTS `#__gregsstaffvalidator_codes`;

@@ -8,7 +8,7 @@ use Joomla\CMS\Date\Date;
 
 /**
  * @package     Joomla.Site
- * @subpackage  com_staffvalidator
+ * @subpackage  com_gregsstaffvalidator
  *
  * @copyright   Copyright (C) 2019 Greg J Preece. All rights reserved.
  * @license     GNU General Public License version 3; see LICENSE
@@ -18,9 +18,9 @@ use Joomla\CMS\Date\Date;
 defined('_JEXEC') or die('Restricted Access');
 ?>
 <?= $this->renderToolbar(); ?>
-<form action="<?= Route::_('index.php?option=com_staffvalidator&view=codes') ?>" method="post" id="adminForm" name="adminForm">
+<form action="<?= Route::_('index.php?option=com_gregsstaffvalidator&view=codes') ?>" method="post" id="adminForm" name="adminForm">
     <?= HTMLHelper::_('form.token'); ?>
-    <input type="hidden" name="option" value="com_staffvalidator">
+    <input type="hidden" name="option" value="com_gregsstaffvalidator">
     <input type="hidden" name="task" value="" />
     <input type="hidden" name="boxchecked" value="0" />
     <input type="hidden" name="filter_order" value="<?= $this->sortColumn; ?>" />
@@ -28,14 +28,14 @@ defined('_JEXEC') or die('Restricted Access');
     <table class="table table-striped table-hover sortable">
         <thead>
         <tr>
-            <th width="1%"><?= Text::_('COM_STAFFVALIDATOR_NUM'); ?></th>
+            <th width="1%"><?= Text::_('COM_GREGSSTAFFVALIDATOR_NUM'); ?></th>
             <th width="2%">
                 <?= HTMLHelper::_('grid.checkall'); ?>
             </th>
             <th>
                 <?= HTMLHelper::_(
                     'grid.sort',
-                    Text::_('COM_STAFFVALIDATOR_FIELD_CODE_VALUE_LABEL'),
+                    Text::_('COM_GREGSSTAFFVALIDATOR_FIELD_CODE_VALUE_LABEL'),
                     'code',
                     $this->sortDirection,
                     $this->sortColumn
@@ -44,7 +44,7 @@ defined('_JEXEC') or die('Restricted Access');
             <th>
                 <?= HTMLHelper::_(
                     'grid.sort',
-                    Text::_('COM_STAFFVALIDATOR_FIELD_CODE_TIME_EXPIRES_LABEL'),
+                    Text::_('COM_GREGSSTAFFVALIDATOR_FIELD_CODE_TIME_EXPIRES_LABEL'),
                     'time_expires',
                     $this->sortDirection,
                     $this->sortColumn
@@ -62,7 +62,7 @@ defined('_JEXEC') or die('Restricted Access');
         <tbody>
             <?php if (!empty($this->items)) : ?>
                 <?php foreach ($this->items as $i => $row) : 
-                    $link = Route::_('index.php?option=com_staffvalidator&task=code.edit&id=' . $row->id);
+                    $link = Route::_('index.php?option=com_gregsstaffvalidator&task=code.edit&id=' . $row->id);
                 ?>
                     <tr>
                         <td>
@@ -72,13 +72,13 @@ defined('_JEXEC') or die('Restricted Access');
                             <?= HTMLHelper::_('grid.id', $i, $row->id); ?>
                         </td>
                         <td>
-                            <a href="<?= $link ?>" title="<?= Text::_('COM_STAFFVALIDATOR_LIST_EDIT'); ?>">
+                            <a href="<?= $link ?>" title="<?= Text::_('COM_GREGSSTAFFVALIDATOR_LIST_EDIT'); ?>">
                                 <?= $row->code; ?>
                             </a>
                         </td>
                         <td>
                             <?= (empty($row->time_expires)) 
-                                ? Text::_('COM_STAFFVALIDATOR_LIST_NO_EXPIRY')
+                                ? Text::_('COM_GREGSSTAFFVALIDATOR_LIST_NO_EXPIRY')
                                 : HTMLHelper::date($row->time_expires, Text::_('DATE_FORMAT_FILTER_DATETIME')); ?>
                         </td>
                     </tr>

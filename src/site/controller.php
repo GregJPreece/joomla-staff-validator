@@ -5,7 +5,7 @@ use Joomla\CMS\Factory;
 
 /**
  * @package     Joomla.Site
- * @subpackage  com_staffvalidator
+ * @subpackage  com_gregsstaffvalidator
  *
  * @copyright   Copyright (C) 2019 Greg J Preece. All rights reserved.
  * @license     GNU General Public License version 3; see LICENSE
@@ -18,7 +18,7 @@ defined('_JEXEC') or die('Restricted access');
  * StaffValidator Component Controller
  * @since  0.0.1
  */
-class StaffValidatorController extends BaseController {
+class GregsStaffValidatorController extends BaseController {
     
     public function display($cachable = false, $urlparams = array()) {        
         $document = Factory::getDocument();

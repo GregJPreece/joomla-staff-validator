@@ -13,7 +13,7 @@ use Joomla\CMS\Uri\Uri;
 
 /**
  * @package     Joomla.Site
- * @subpackage  com_staffvalidator
+ * @subpackage  com_gregsstaffvalidator
  *
  * @copyright   Copyright (C) 2019 Greg J Preece. All rights reserved.
  * @license     GNU General Public License version 3; see LICENSE
@@ -25,7 +25,7 @@ defined('_JEXEC') or die('Restricted access');
 /**
  * Main Staff Validator Admin View
  */
-class StaffValidatorViewCodes extends HtmlView {
+class GregsStaffValidatorViewCodes extends HtmlView {
     
     /**
      * Whether the user has reached the allowed codes limit
@@ -58,7 +58,7 @@ class StaffValidatorViewCodes extends HtmlView {
         $this->sortColumn = $state->get('list.ordering');
         $this->sortDirection = $state->get('list.direction');
 
-        $params = ComponentHelper::getParams("com_staffvalidator");
+        $params = ComponentHelper::getParams("com_gregsstaffvalidator");
         $codeLimit = $params->get('maxCodesPerUser', null);
         $this->overCodeLimit = ($codeLimit !== null) && (intval($codeLimit) <= count($this->items));
         
@@ -75,22 +75,22 @@ class StaffValidatorViewCodes extends HtmlView {
     }
 
     protected function renderToolbar(): string {
-        $this->canDo = ContentHelper::getActions('com_staffvalidator');
-        $title = Text::_('COM_STAFFVALIDATOR_LIST_TITLE');
+        $this->canDo = ContentHelper::getActions('com_gregsstaffvalidator');
+        $title = Text::_('COM_GREGSSTAFFVALIDATOR_LIST_TITLE');
         $title .= ($this->pagination->total) ? ' (<span class="list-count">' . $this->pagination->total . '</span>)' : '';
 
         ToolbarHelper::title($title);
 
         if ($this->canDo->get('core.create') && !$this->overCodeLimit) {
-            ToolbarHelper::addNew('code.add', 'COM_STAFFVALIDATOR_BUTTON_CODE_NEW');
+            ToolbarHelper::addNew('code.add', 'COM_GREGSSTAFFVALIDATOR_BUTTON_CODE_NEW');
         }
         
         if ($this->canDo->get('core.edit') || $this->canDo->get('core.edit.own')) {
-            ToolbarHelper::editList('code.edit', 'COM_STAFFVALIDATOR_BUTTON_CODE_EDIT');
+            ToolbarHelper::editList('code.edit', 'COM_GREGSSTAFFVALIDATOR_BUTTON_CODE_EDIT');
         }
         
         if ($this->canDo->get('core.delete')) {
-            ToolbarHelper::deleteList('COM_STAFFVALIDATOR_DELETE_CONFIRM', 'codes.delete', 'COM_STAFFVALIDATOR_BUTTON_CODE_DELETE');
+            ToolbarHelper::deleteList('COM_GREGSSTAFFVALIDATOR_DELETE_CONFIRM', 'codes.delete', 'COM_GREGSSTAFFVALIDATOR_BUTTON_CODE_DELETE');
         }
         
         return Toolbar::getInstance()->render();
@@ -100,11 +100,11 @@ class StaffValidatorViewCodes extends HtmlView {
         HTMLHelper::_('formbehavior.chosen', 'select');
         
         $document = Factory::getDocument();
-        $document->setTitle(Text::_('COM_STAFFVALIDATOR_LIST_TITLE'));
-        $document->addStyleSheet(Uri::root() . '/components/com_staffvalidator/views/codes/css/toolbar.css');
+        $document->setTitle(Text::_('COM_GREGSSTAFFVALIDATOR_LIST_TITLE'));
+        $document->addStyleSheet(Uri::root() . '/components/com_gregsstaffvalidator/views/codes/css/toolbar.css');
         
         if ($this->overCodeLimit) {
-            Factory::getApplication()->enqueueMessage(Text::_('COM_STAFFVALIDATOR_LIST_CODE_LIMIT'), 'notice');
+            Factory::getApplication()->enqueueMessage(Text::_('COM_GREGSSTAFFVALIDATOR_LIST_CODE_LIMIT'), 'notice');
         }
     }
 

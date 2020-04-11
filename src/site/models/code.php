@@ -6,7 +6,7 @@ use Joomla\CMS\Factory;
 
 /**
  * @package     Joomla.Site
- * @subpackage  com_staffvalidator
+ * @subpackage  com_gregsstaffvalidator
  *
  * @copyright   Copyright (C) 2019 Greg J Preece. All rights reserved.
  * @license     GNU General Public License version 3; see LICENSE
@@ -18,7 +18,7 @@ defined('_JEXEC') or die('Restricted access');
 /**
  * Staff Validator Code Model
  */
-class StaffValidatorModelCode extends AdminModel {
+class GregsStaffValidatorModelCode extends AdminModel {
 
     /**
      * Fetches a table object, loads it if it is
@@ -29,7 +29,7 @@ class StaffValidatorModelCode extends AdminModel {
      * @param array $config Configuration array for model. Optional.
      * @return Table The loaded table object
      */
-    public function getTable($type = 'Code', $prefix = 'StaffValidatorTable', $config = []) {
+    public function getTable($type = 'Code', $prefix = 'GregsStaffValidatorTable', $config = []) {
         return Table::getInstance($type, $prefix, $config);    
     }
 
@@ -42,7 +42,7 @@ class StaffValidatorModelCode extends AdminModel {
      */
     public function getForm($data = [], $loadData = true) {
         $form = $this->loadForm(
-            'com_staffvalidator.code.create',
+            'com_gregsstaffvalidator.code.create',
             'create',
             [
                 'control' => 'jform',
@@ -55,7 +55,7 @@ class StaffValidatorModelCode extends AdminModel {
     
     public function getValidationForm($data = [], $loadData = true) {
         $form = $this->loadForm(
-            'com_staffvalidator.code.validate',
+            'com_gregsstaffvalidator.code.validate',
             'validate',
             [
                 'control' => 'jform',
@@ -71,7 +71,7 @@ class StaffValidatorModelCode extends AdminModel {
         $query = $db->getQuery(true);
         
         $query->select(['codes.*', 'users.name', 'users.username'])
-              ->from($db->qn('#__staffvalidator_codes', 'codes'))
+              ->from($db->qn('#__gregsstaffvalidator_codes', 'codes'))
               ->innerJoin($db->qn('#__users', 'users') . ' ON ' . $db->qn('codes.user_id') . ' = ' . $db->qn('users.id'))
               ->where($db->qn('codes.code'). ' = ' . $db->q(trim($code)));
         
@@ -85,7 +85,7 @@ class StaffValidatorModelCode extends AdminModel {
         $query = $db->getQuery(true);
 
         $query->select(['codes.*', 'users.name', 'users.username'])
-              ->from($db->qn('#__staffvalidator_codes', 'codes'))
+              ->from($db->qn('#__gregsstaffvalidator_codes', 'codes'))
               ->innerJoin($db->qn('#__users', 'users') . ' ON ' . $db->qn('codes.user_id') . ' = ' . $db->qn('users.id'))
               ->where(
                       $db->qn('codes.code') . ' = ' . $db->q(trim($code)) . 
@@ -104,7 +104,7 @@ class StaffValidatorModelCode extends AdminModel {
      */
     protected function loadFormData() {
         $data = Factory::getApplication()->getUserState(
-            'com_staffvalidator.edit.code.data', []
+            'com_gregsstaffvalidator.edit.code.data', []
         );
 
         if (empty($data)) {
@@ -116,7 +116,7 @@ class StaffValidatorModelCode extends AdminModel {
     
     /**
      * Preps the table row data for saving.
-     * @param StaffValidatorTableCode $table Table to prepare
+     * @param GregsStaffValidatorTableCode $table Table to prepare
      */
     protected function prepareTable($table) {
         $binds = [

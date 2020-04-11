@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <form>
     <fieldset name="validate"
-              addrulepath="components/com_staffvalidator/models/rules">
+              addrulepath="components/com_gregsstaffvalidator/models/rules">
         <field  name="code" 
                 type="text"
                 size="12"
@@ -10,9 +10,9 @@
                 validate="code"
                 pattern="[a-zA-Z0-9]{4,10}"
                 class="text_area validate-code"
-                message="COM_STAFFVALIDATOR_FIELD_CODE_VALUE_ERR"
-                label="COM_STAFFVALIDATOR_FIELD_CODE_VALIDATE_LABEL"
-                description="COM_STAFFVALIDATOR_FIELD_CODE_VALIDATE_DESC"
-                hint="COM_STAFFVALIDATOR_FIELD_CODE_VALIDATE_DESC" />
+                message="COM_GREGSSTAFFVALIDATOR_FIELD_CODE_VALUE_ERR"
+                label="COM_GREGSSTAFFVALIDATOR_FIELD_CODE_VALIDATE_LABEL"
+                description="COM_GREGSSTAFFVALIDATOR_FIELD_CODE_VALIDATE_DESC"
+                hint="COM_GREGSSTAFFVALIDATOR_FIELD_CODE_VALIDATE_DESC" />
     </fieldset>
 </form>

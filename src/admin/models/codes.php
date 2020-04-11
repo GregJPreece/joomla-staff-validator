@@ -10,7 +10,7 @@ use Joomla\CMS\Table\Table;
 
 /**
  * @package     Joomla.Administrator
- * @subpackage  com_staffvalidator
+ * @subpackage  com_gregsstaffvalidator
  *
  * @copyright   Copyright (C) 2019 Greg J Preece. All rights reserved.
  * @license     GNU General Public License version 3; see LICENSE
@@ -22,7 +22,7 @@ defined('_JEXEC') or die('Restricted access');
 /**
  * Staff Validator code list Model
  */
-class StaffValidatorModelCodes extends ListModel {
+class GregsStaffValidatorModelCodes extends ListModel {
 
     public function __construct($config = []) {
         $config['filter_fields'] = [
@@ -124,7 +124,7 @@ class StaffValidatorModelCodes extends ListModel {
      * @param array $config Configuration array for model. Optional.
      * @return Table The loaded table object
      */
-    public function getTable($type = 'Code', $prefix = 'StaffValidatorTable', $config = []) {
+    public function getTable($type = 'Code', $prefix = 'GregsStaffValidatorTable', $config = []) {
         return Table::getInstance($type, $prefix, $config);    
     }
     
@@ -159,7 +159,7 @@ class StaffValidatorModelCodes extends ListModel {
             $db->qn('updater.name', 'updaterName'),
             $db->qn('updater.username', 'updaterUsername')
         ])
-        ->from($db->qn('#__staffvalidator_codes', 'codes'))
+        ->from($db->qn('#__gregsstaffvalidator_codes', 'codes'))
         ->innerJoin($db->qn('#__users', 'owner') . ' ON ' . $db->qn('codes.user_id') . ' = ' . $db->qn('owner.id'))
         ->innerJoin($db->qn('#__users', 'creator') . ' ON ' . $db->qn('codes.created_by') . ' = ' . $db->qn('creator.id'))
         ->innerJoin($db->qn('#__users', 'updater') . ' ON ' . $db->qn('codes.user_id') . ' = ' . $db->qn('updater.id'));

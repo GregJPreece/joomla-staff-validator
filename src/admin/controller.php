@@ -4,7 +4,7 @@ use Joomla\CMS\MVC\Controller\BaseController;
 
 /**
  * @package     Joomla.Administrator
- * @subpackage  com_staffvalidator
+ * @subpackage  com_gregsstaffvalidator
  *
  * @copyright   Copyright (C) 2019 Greg J Preece. All rights reserved.
  * @license     GNU General Public License version 3; see LICENSE
@@ -17,9 +17,9 @@ defined('_JEXEC') or die('Restricted access');
  * General Controller of StaffValidator component
  *
  * @package     Joomla.Administrator
- * @subpackage  com_staffvalidator
+ * @subpackage  com_gregsstaffvalidator
  */
-class StaffValidatorController extends BaseController {
+class GregsStaffValidatorController extends BaseController {
     /**
      * The default view for the display method.
      *

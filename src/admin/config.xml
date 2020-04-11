@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <config>
     <fieldset name="ui"
-              label="COM_STAFFVALIDATOR_CONFIG_FIELDSET_UI_LABEL"
-              description="COM_STAFFVALIDATOR_CONFIG_FIELDSET_UI_LABEL">
+              label="COM_GREGSSTAFFVALIDATOR_CONFIG_FIELDSET_UI_LABEL"
+              description="COM_GREGSSTAFFVALIDATOR_CONFIG_FIELDSET_UI_LABEL">
         <field name="maxCodesPerUser"
                type="number"
                default=""
                size="20"
                min="1"
-               hint="COM_STAFFVALIDATOR_CONFIG_FIELD_MAX_CODES_HINT"
-               label="COM_STAFFVALIDATOR_CONFIG_FIELD_MAX_CODES_LABEL"
-               description="COM_STAFFVALIDATOR_CONFIG_FIELD_MAX_CODES_DESC" />
+               hint="COM_GREGSSTAFFVALIDATOR_CONFIG_FIELD_MAX_CODES_HINT"
+               label="COM_GREGSSTAFFVALIDATOR_CONFIG_FIELD_MAX_CODES_LABEL"
+               description="COM_GREGSSTAFFVALIDATOR_CONFIG_FIELD_MAX_CODES_DESC" />
         <field name="validatePreamble"
                type="textarea"
                rows="6"
                cols="50"
-               hint="COM_STAFFVALIDATOR_CONFIG_FIELD_PREAMBLE_HINT"
-               label="COM_STAFFVALIDATOR_CONFIG_FIELD_PREAMBLE_LABEL"
-               description="COM_STAFFVALIDATOR_CONFIG_FIELD_PREAMBLE_DESC" />
+               hint="COM_GREGSSTAFFVALIDATOR_CONFIG_FIELD_PREAMBLE_HINT"
+               label="COM_GREGSSTAFFVALIDATOR_CONFIG_FIELD_PREAMBLE_LABEL"
+               description="COM_GREGSSTAFFVALIDATOR_CONFIG_FIELD_PREAMBLE_DESC" />
         <field name="validatePostamble"
                type="textarea"
                rows="6"
                cols="50"
-               hint="COM_STAFFVALIDATOR_CONFIG_FIELD_POSTAMBLE_HINT"
-               label="COM_STAFFVALIDATOR_CONFIG_FIELD_POSTAMBLE_LABEL"
-               description="COM_STAFFVALIDATOR_CONFIG_FIELD_POSTAMBLE_DESC" />
+               hint="COM_GREGSSTAFFVALIDATOR_CONFIG_FIELD_POSTAMBLE_HINT"
+               label="COM_GREGSSTAFFVALIDATOR_CONFIG_FIELD_POSTAMBLE_LABEL"
+               description="COM_GREGSSTAFFVALIDATOR_CONFIG_FIELD_POSTAMBLE_DESC" />
         <field name="validateFailureText"
                type="textarea"
                rows="6"
                cols="50"
-               hint="COM_STAFFVALIDATOR_CONFIG_FIELD_FAILURE_TEXT_HINT"
-               label="COM_STAFFVALIDATOR_CONFIG_FIELD_FAILURE_TEXT_LABEL"
-               description="COM_STAFFVALIDATOR_CONFIG_FIELD_FAILURE_TEXT_DESC" />
+               hint="COM_GREGSSTAFFVALIDATOR_CONFIG_FIELD_FAILURE_TEXT_HINT"
+               label="COM_GREGSSTAFFVALIDATOR_CONFIG_FIELD_FAILURE_TEXT_LABEL"
+               description="COM_GREGSSTAFFVALIDATOR_CONFIG_FIELD_FAILURE_TEXT_DESC" />
     </fieldset>
     <fieldset name="permissions"
               label="JCONFIG_PERMISSIONS_LABEL"
@@ -42,7 +42,7 @@
                class="inputbox"
                validate="rules"
                filter="rules"
-               component="com_staffvalidator"
+               component="com_gregsstaffvalidator"
                section="component" />
     </fieldset>
 </config>

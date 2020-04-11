@@ -9,7 +9,7 @@ use Joomla\Utilities\ArrayHelper;
 
 /**
  * @package     Joomla.Site
- * @subpackage  com_staffvalidator
+ * @subpackage  com_gregsstaffvalidator
  *
  * @copyright   Copyright (C) 2019 Greg J Preece. All rights reserved.
  * @license     GNU General Public License version 3; see LICENSE
@@ -21,9 +21,9 @@ defined('_JEXEC') or die('Restricted access');
  * Front-end code-creation controller
  *
  * @package     Joomla.Site
- * @subpackage  com_staffvalidator
+ * @subpackage  com_gregsstaffvalidator
  */
-class StaffValidatorControllerCodes extends BaseController {
+class GregsStaffValidatorControllerCodes extends BaseController {
     
     /**
      * Removes an item.
@@ -40,7 +40,7 @@ class StaffValidatorControllerCodes extends BaseController {
         $ids = $this->input->get('cid', array(), 'array');
 
         if (!is_array($ids) || count($ids) < 1) {
-            Log::add(Text::_('COM_STAFFVALIDATOR_DELETE_NOTHING_SELECTED'), Log::WARNING, 'jerror');
+            Log::add(Text::_('COM_GREGSSTAFFVALIDATOR_DELETE_NOTHING_SELECTED'), Log::WARNING, 'jerror');
         } else {
             // Get the model.
             $model = $this->getModel('Codes');
@@ -50,7 +50,7 @@ class StaffValidatorControllerCodes extends BaseController {
 
             // Remove the items.
             if ($model->delete($ids)) {
-                $this->setMessage(Text::plural('COM_STAFFVALIDATOR_DELETE_N_DELETED', count($ids)));
+                $this->setMessage(Text::plural('COM_GREGSSTAFFVALIDATOR_DELETE_N_DELETED', count($ids)));
             } else {
                 $this->setMessage($model->getError(), 'error');
             }
@@ -59,7 +59,7 @@ class StaffValidatorControllerCodes extends BaseController {
             $this->postDeleteHook($model, $ids);
         }
 
-        $this->setRedirect(Route::_('index.php?option=com_staffvalidator&view=codes', false));
+        $this->setRedirect(Route::_('index.php?option=com_gregsstaffvalidator&view=codes', false));
         
     }
     

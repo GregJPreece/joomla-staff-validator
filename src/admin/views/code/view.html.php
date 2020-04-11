@@ -9,7 +9,7 @@ use Joomla\CMS\HTML\HTMLHelper;
 
 /**
  * @package     Joomla.Administrator
- * @subpackage  com_staffvalidator
+ * @subpackage  com_gregsstaffvalidator
  *
  * @copyright   Copyright (C) 2019 Greg J Preece. All rights reserved.
  * @license     GNU General Public License version 3; see LICENSE
@@ -18,7 +18,7 @@ use Joomla\CMS\HTML\HTMLHelper;
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
-class StaffValidatorViewCode extends HtmlView {
+class GregsStaffValidatorViewCode extends HtmlView {
 
     protected $form = null;
 
@@ -49,8 +49,8 @@ class StaffValidatorViewCode extends HtmlView {
 
         $isNew = ($this->item->id == 0);
         $title = ($isNew)
-            ? Text::_('COM_STAFFVALIDATOR_MANAGER_TITLE_CODE_NEW')
-            : Text::_('COM_STAFFVALIDATOR_MANAGER_TITLE_CODE_EDIT')  . ' (' . $this->item->code . ')';
+            ? Text::_('COM_GREGSSTAFFVALIDATOR_MANAGER_TITLE_CODE_NEW')
+            : Text::_('COM_GREGSSTAFFVALIDATOR_MANAGER_TITLE_CODE_EDIT')  . ' (' . $this->item->code . ')';
 
         ToolbarHelper::title($title, 'code');
         ToolbarHelper::save('code.save');
@@ -68,11 +68,11 @@ class StaffValidatorViewCode extends HtmlView {
         $isNew = ($this->item->id == 0);
         $document = Factory::getDocument();
         $document->setTitle(($isNew)
-                ? Text::_('COM_STAFFVALIDATOR_MANAGER_TITLE_CODE_NEW')
-                : Text::_('COM_STAFFVALIDATOR_MANAGER_TITLE_CODE_EDIT') . ' (' . $this->item->code . ')');
+                ? Text::_('COM_GREGSSTAFFVALIDATOR_MANAGER_TITLE_CODE_NEW')
+                : Text::_('COM_GREGSSTAFFVALIDATOR_MANAGER_TITLE_CODE_EDIT') . ' (' . $this->item->code . ')');
         $document->addScript(Uri::root() . 
-                '/administrator/components/com_staffvalidator/views/code/js/submit.js');
-        Text::script('COM_STAFFVALIDATOR_MANAGER_CODE_EDIT_VALIDATION_FAIL');
+                '/administrator/components/com_gregsstaffvalidator/views/code/js/submit.js');
+        Text::script('COM_GREGSSTAFFVALIDATOR_MANAGER_CODE_EDIT_VALIDATION_FAIL');
     }
 
 }

@@ -6,7 +6,7 @@ use Joomla\CMS\Router\Route;
 
 /**
  * @package     Joomla.Administrator
- * @subpackage  com_staffvalidator
+ * @subpackage  com_gregsstaffvalidator
  *
  * @copyright   Copyright (C) 2019 Greg J Preece. All rights reserved.
  * @license     GNU General Public License version 3; see LICENSE
@@ -15,13 +15,13 @@ use Joomla\CMS\Router\Route;
 defined('_JEXEC') or die('Restricted access');
 
 $formLegend = ($this->item->id == 0)
-    ? Text::_('COM_STAFFVALIDATOR_CREATE_LEGEND')
-    : Text::_('COM_STAFFVALIDATOR_EDIT_LEGEND')  . ' (' . $this->item->code . ')';
+    ? Text::_('COM_GREGSSTAFFVALIDATOR_CREATE_LEGEND')
+    : Text::_('COM_GREGSSTAFFVALIDATOR_EDIT_LEGEND')  . ' (' . $this->item->code . ')';
 
 ?>
-<form action="<?= Route::_('index.php?option=com_staffvalidator'); ?>"
+<form action="<?= Route::_('index.php?option=com_gregsstaffvalidator'); ?>"
     method="post" name="adminForm" id="adminForm" class="form-validate">
-    <input type="hidden" name="option" value="com_staffvalidator" />
+    <input type="hidden" name="option" value="com_gregsstaffvalidator" />
     <input type="hidden" name="task" value="code.save" />
     <input type="hidden" name="layout" value="<?= htmlspecialchars($this->getLayout(), ENT_COMPAT, 'UTF-8'); ?>" />
     <?= HTMLHelper::_('form.token'); ?>

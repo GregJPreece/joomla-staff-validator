@@ -4,7 +4,7 @@ use Joomla\CMS\Form\FormRule;
 
 /**
  * @package     Joomla.Site
- * @subpackage  com_staffvalidator
+ * @subpackage  com_gregsstaffvalidator
  *
  * @copyright   Copyright (C) 2020 Greg J Preece. All rights reserved.
  * @license     GNU General Public License version 3; see LICENSE

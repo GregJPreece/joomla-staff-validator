@@ -7,7 +7,7 @@ use Joomla\CMS\Factory;
 
 /**
  * @package     Joomla.Administrator
- * @subpackage  com_staffvalidator
+ * @subpackage  com_gregsstaffvalidator
  *
  * @copyright   Copyright (C) 2019 Greg J Preece. All rights reserved.
  * @license     GNU General Public License version 3; see LICENSE
@@ -19,7 +19,7 @@ defined('_JEXEC') or die('Restricted access');
 /**
  * Main Staff Validator Admin View
  */
-class StaffValidatorViewCodes extends HtmlView {
+class GregsStaffValidatorViewCodes extends HtmlView {
     
     /**
      * Display the main Staff Validator view
@@ -51,22 +51,22 @@ class StaffValidatorViewCodes extends HtmlView {
     }
 
     protected function addToolbar(): void {
-        $title = Text::_('COM_STAFFVALIDATOR_MANAGER_TITLE');
+        $title = Text::_('COM_GREGSSTAFFVALIDATOR_MANAGER_TITLE');
         $title .= ($this->pagination->total) ? ' (<span class="list-count">' . $this->pagination->total . '</span>)' : '';
 
         ToolbarHelper::title($title);
         ToolbarHelper::addNew('code.add');
         ToolbarHelper::editList('code.edit');
-        ToolbarHelper::deleteList('COM_STAFFVALIDATOR_MANAGER_DELETE_CONFIRM', 'codes.delete');
+        ToolbarHelper::deleteList('COM_GREGSSTAFFVALIDATOR_MANAGER_DELETE_CONFIRM', 'codes.delete');
         
-        if (Factory::getUser()->authorise('core.admin', 'com_staffvalidator')) {
-            ToolbarHelper::preferences('com_staffvalidator');
+        if (Factory::getUser()->authorise('core.admin', 'com_gregsstaffvalidator')) {
+            ToolbarHelper::preferences('com_gregsstaffvalidator');
         }
     }
 
     protected function setupDocument(): void {
         $document = Factory::getDocument();
-        $document->setTitle(Text::_('COM_STAFFVALIDATOR_MANAGER_TITLE'));
+        $document->setTitle(Text::_('COM_GREGSSTAFFVALIDATOR_MANAGER_TITLE'));
     }
 
 }

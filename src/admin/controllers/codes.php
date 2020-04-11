@@ -4,7 +4,7 @@ use Joomla\CMS\MVC\Controller\AdminController;
 
 /**
  * @package     Joomla.Administrator
- * @subpackage  com_staffvalidator
+ * @subpackage  com_gregsstaffvalidator
  *
  * @copyright   Copyright (C) 2019 Greg J Preece. All rights reserved.
  * @license     GNU General Public License version 3; see LICENSE
@@ -13,7 +13,7 @@ use Joomla\CMS\MVC\Controller\AdminController;
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
-class StaffValidatorControllerCodes extends AdminController {
+class GregsStaffValidatorControllerCodes extends AdminController {
 
     /**
      * Proxy for getModel.
@@ -25,7 +25,7 @@ class StaffValidatorControllerCodes extends AdminController {
      * @return  object  The model.
 
      */
-    public function getModel($name = 'Codes', $prefix = 'StaffValidatorModel', 
+    public function getModel($name = 'Codes', $prefix = 'GregsStaffValidatorModel', 
                              $config = ['ignore_request' => true]) {
         $model = parent::getModel($name, $prefix, $config);
 

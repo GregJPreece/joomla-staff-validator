@@ -6,7 +6,7 @@ use Joomla\CMS\Router\Route;
 
 /**
  * @package     Joomla.Site
- * @subpackage  com_staffvalidator
+ * @subpackage  com_gregsstaffvalidator
  *
  * @copyright   Copyright (C) 2019 Greg J Preece. All rights reserved.
  * @license     GNU General Public License version 3; see LICENSE
@@ -15,15 +15,15 @@ use Joomla\CMS\Router\Route;
 defined('_JEXEC') or die('Restricted access');
 
 ?>
-<h1><?= Text::_('COM_STAFFVALIDATOR_VALIDATED_TITLE') ?></h1>
+<h1><?= Text::_('COM_GREGSSTAFFVALIDATOR_VALIDATED_TITLE') ?></h1>
 <p>
-    <?= Text::_('COM_STAFFVALIDATOR_VALIDATED_MESSAGE') ?>
+    <?= Text::_('COM_GREGSSTAFFVALIDATOR_VALIDATED_MESSAGE') ?>
     <strong><?= $this->successObject->name ?></strong>
 </p>
 
 <?php if (!empty($this->successObject->note)): ?>
 <p>
-    <?= Text::_('COM_STAFFVALIDATOR_VALIDATE_NOTE') ?>
+    <?= Text::_('COM_GREGSSTAFFVALIDATOR_VALIDATE_NOTE') ?>
 </p>
 <blockquote>
     <?= $this->successObject->note ?>

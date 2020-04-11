@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <form>
     <fieldset name="validation-code" 
-              addrulepath="components/com_staffvalidator/models/rules">
+              addrulepath="components/com_gregsstaffvalidator/models/rules">
         <field  name="id" 
                 type="hidden"
                 default="0" />
@@ -14,10 +14,10 @@
                 validate="code"
                 pattern="[a-zA-Z0-9]{4,10}"
                 class="text_area validate-code"
-                message="COM_STAFFVALIDATOR_FIELD_CODE_VALUE_ERR"
-                label="COM_STAFFVALIDATOR_FIELD_CODE_VALUE_LABEL"
-                description="COM_STAFFVALIDATOR_FIELD_CODE_VALUE_DESC"
-                hint="COM_STAFFVALIDATOR_FIELD_CODE_VALUE_DESC" />
+                message="COM_GREGSSTAFFVALIDATOR_FIELD_CODE_VALUE_ERR"
+                label="COM_GREGSSTAFFVALIDATOR_FIELD_CODE_VALUE_LABEL"
+                description="COM_GREGSSTAFFVALIDATOR_FIELD_CODE_VALUE_DESC"
+                hint="COM_GREGSSTAFFVALIDATOR_FIELD_CODE_VALUE_DESC" />
         <field  name="time_expires"
                 type="calendar"
                 minyear="0"
@@ -25,13 +25,13 @@
                 timeformat="24"
                 todaybutton="false"
                 translateformat="true"
-                label="COM_STAFFVALIDATOR_FIELD_CODE_TIME_EXPIRES_LABEL"
-                description="COM_STAFFVALIDATOR_FIELD_CODE_TIME_EXPIRES_DESC"
-                hint="COM_STAFFVALIDATOR_FIELD_CODE_TIME_EXPIRES_DESC" />
+                label="COM_GREGSSTAFFVALIDATOR_FIELD_CODE_TIME_EXPIRES_LABEL"
+                description="COM_GREGSSTAFFVALIDATOR_FIELD_CODE_TIME_EXPIRES_DESC"
+                hint="COM_GREGSSTAFFVALIDATOR_FIELD_CODE_TIME_EXPIRES_DESC" />
         <field  name="note" 
                 type="textarea"
-                label="COM_STAFFVALIDATOR_FIELD_CODE_NOTE_LABEL"
-                description="COM_STAFFVALIDATOR_FIELD_CODE_NOTE_DESC"
-                hint="COM_STAFFVALIDATOR_FIELD_CODE_NOTE_DESC" />
+                label="COM_GREGSSTAFFVALIDATOR_FIELD_CODE_NOTE_LABEL"
+                description="COM_GREGSSTAFFVALIDATOR_FIELD_CODE_NOTE_DESC"
+                hint="COM_GREGSSTAFFVALIDATOR_FIELD_CODE_NOTE_DESC" />
     </fieldset>
 </form>

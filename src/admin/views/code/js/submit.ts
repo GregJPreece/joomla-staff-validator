@@ -22,7 +22,7 @@ Joomla.submitbutton = function(task: string) {
             Joomla.submitform(task);
             return true;
         } else {
-            alert(Joomla.JText._('COM_STAFFVALIDATOR_MANAGER_CODE_EDIT_VALIDATION_FAIL',
+            alert(Joomla.JText._('COM_GREGSSTAFFVALIDATOR_MANAGER_CODE_EDIT_VALIDATION_FAIL',
                                  'Some values are unacceptable'));
             return false;
         }

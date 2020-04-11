@@ -5,7 +5,7 @@ use Joomla\CMS\MVC\Model\ItemModel;
 
 /**
  * @package     Joomla.Site
- * @subpackage  com_staffvalidator
+ * @subpackage  com_gregsstaffvalidator
  *
  * @copyright   Copyright (C) 2019 Greg J Preece. All rights reserved.
  * @license     GNU General Public License version 3; see LICENSE
@@ -19,7 +19,7 @@ defined('_JEXEC') or die('Restricted access');
  *
  * @since  0.0.1
  */
-class StaffValidatorModelStaffValidator extends ItemModel {
+class GregsStaffValidatorModelStaffValidator extends ItemModel {
 
     /**
      * @var string message

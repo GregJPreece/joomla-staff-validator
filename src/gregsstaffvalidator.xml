@@ -9,7 +9,7 @@
     <copyright>Greg J Preece</copyright>
     <license>GPL v3</license>
     <!--  The version string is recorded in the components table -->
-    <version>1.0.0</version>
+    <version>1.0.2</version>
     <!-- The description is optional and defaults to the name -->
     <description>
         A helper component to allow site members to validate their identities when contacting
@@ -43,7 +43,7 @@
     
     <files folder="site/">
         <filename>index.html</filename>
-        <filename>staffvalidator.php</filename>
+        <filename>gregsstaffvalidator.php</filename>
         <filename>controller.php</filename>
         <folder>controllers</folder>
         <folder>language</folder>
@@ -52,17 +52,17 @@
     </files>
 
     <languages>
-        <language tag="en-GB">site/language/en-GB/en-GB.com_staffvalidator.ini</language>
-        <language tag="en-GB">site/language/en-GB/en-GB.com_staffvalidator.sys.ini</language>
+        <language tag="en-GB">site/language/en-GB/en-GB.com_gregsstaffvalidator.ini</language>
+        <language tag="en-GB">site/language/en-GB/en-GB.com_gregsstaffvalidator.sys.ini</language>
     </languages>
 
     <administration>
         <!-- Administration Menu Section -->
-        <menu link='index.php?option=com_staffvalidator'>Greg's Staff Validator</menu>
+        <menu link='index.php?option=com_gregsstaffvalidator'>Greg's Staff Validator</menu>
         <!-- Administration Main File Copy Section -->
         <files folder="admin/">
             <filename>index.html</filename>
-            <filename>staffvalidator.php</filename>
+            <filename>gregsstaffvalidator.php</filename>
             <filename>controller.php</filename>
             <filename>access.xml</filename>
             <filename>config.xml</filename>
@@ -75,8 +75,8 @@
         </files>
 
         <languages>
-            <language tag="en-GB">admin/language/en-GB/en-GB.com_staffvalidator.ini</language>
-            <language tag="en-GB">admin/language/en-GB/en-GB.com_staffvalidator.sys.ini</language>
+            <language tag="en-GB">admin/language/en-GB/en-GB.com_gregsstaffvalidator.ini</language>
+            <language tag="en-GB">admin/language/en-GB/en-GB.com_gregsstaffvalidator.sys.ini</language>
         </languages>
     </administration>
 

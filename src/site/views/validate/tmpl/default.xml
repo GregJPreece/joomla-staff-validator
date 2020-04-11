@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
-    <layout title="COM_STAFFVALIDATOR_MENU_VALIDATE_CODE_TITLE">
-        <message><![CDATA[COM_STAFFVALIDATOR_MENU_VALIDATE_CODE_DESC]]></message>
+    <layout title="COM_GREGSSTAFFVALIDATOR_MENU_VALIDATE_CODE_TITLE">
+        <message><![CDATA[COM_GREGSSTAFFVALIDATOR_MENU_VALIDATE_CODE_DESC]]></message>
     </layout>
 </metadata>
