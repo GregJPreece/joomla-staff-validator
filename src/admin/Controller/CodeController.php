@@ -1,5 +1,9 @@
 <?php
 
+namespace GregJPreece\Component\GregsStaffValidator\Administrator\Controller;
+
+defined('_JEXEC') or die;
+
 use Joomla\CMS\MVC\Controller\FormController;
 
 /**
@@ -10,9 +14,6 @@ use Joomla\CMS\MVC\Controller\FormController;
  * @license     GNU General Public License version 3; see LICENSE
  */
 
-// No direct access to this file
-defined('_JEXEC') or die('Restricted access');
-
 /**
  * Staff Validator Code Controller
  *
@@ -20,4 +21,4 @@ defined('_JEXEC') or die('Restricted access');
  * @subpackage  com_gregsstaffvalidator
  * @since       0.0.9
  */
-class GregsStaffValidatorControllerCode extends FormController {}
+class CodeController extends FormController {}

@@ -1,8 +1,12 @@
 <?php
 
+namespace GregJPreece\Component\GregsStaffValidator\Administrator\View\Code;
+
+defined('_JEXEC') or die;
+
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\Factory;
-use Joomla\CMS\MVC\View\HtmlView;
+use Joomla\CMS\MVC\View\HtmlView as BaseHtmlView;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Toolbar\ToolbarHelper;
 use Joomla\CMS\HTML\HTMLHelper;
@@ -15,10 +19,7 @@ use Joomla\CMS\HTML\HTMLHelper;
  * @license     GNU General Public License version 3; see LICENSE
  */
 
-// No direct access to this file
-defined('_JEXEC') or die('Restricted access');
-
-class GregsStaffValidatorViewCode extends HtmlView {
+class HtmlView extends BaseHtmlView {
 
     protected $form = null;
 
@@ -31,7 +32,7 @@ class GregsStaffValidatorViewCode extends HtmlView {
         // Error checking
         $errors = $this->get('Errors');
         
-        if (count($errors)) {
+        if ($errors && count($errors)) {
             throw new RuntimeException(implode('<br>', $errors), 500);
         }
 
@@ -62,7 +63,7 @@ class GregsStaffValidatorViewCode extends HtmlView {
     }
     
     protected function setupDocument() {
-        HTMLHelper::_('behavior.framework');
+        HTMLHelper::_('behavior.core');
         HTMLHelper::_('behavior.formvalidator');
         
         $isNew = ($this->item->id == 0);

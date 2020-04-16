@@ -1,5 +1,9 @@
 <?php
 
+namespace GregJPreece\Component\GregsStaffValidator\Administrator\Controller;
+
+defined('_JEXEC') or die;
+
 use Joomla\CMS\MVC\Controller\AdminController;
 
 /**
@@ -10,10 +14,7 @@ use Joomla\CMS\MVC\Controller\AdminController;
  * @license     GNU General Public License version 3; see LICENSE
  */
 
-// No direct access to this file
-defined('_JEXEC') or die('Restricted access');
-
-class GregsStaffValidatorControllerCodes extends AdminController {
+class CodesController extends AdminController {
 
     /**
      * Proxy for getModel.
@@ -25,7 +26,7 @@ class GregsStaffValidatorControllerCodes extends AdminController {
      * @return  object  The model.
 
      */
-    public function getModel($name = 'Codes', $prefix = 'GregsStaffValidatorModel', 
+    public function getModel($name = 'Codes', $prefix = '', 
                              $config = ['ignore_request' => true]) {
         $model = parent::getModel($name, $prefix, $config);
 

@@ -1,5 +1,9 @@
 <?php
 
+namespace GregJPreece\Component\GregsStaffValidator\Administrator\Rule;
+
+defined('_JEXEC') or die;
+
 use Joomla\CMS\Form\FormRule;
 
 /**
@@ -10,13 +14,10 @@ use Joomla\CMS\Form\FormRule;
  * @license     GNU General Public License version 3; see LICENSE
  */
 
-// No direct access to this file
-defined('_JEXEC') or die('Restricted access');
-
 /**
  * Form rule for validating validation codes as they are entered
  */
-class JFormRuleCode extends FormRule {
+class CodeRule extends FormRule {
     
     protected $regex = '[a-zA-Z0-9]{4,10}';
     

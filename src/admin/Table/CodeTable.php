@@ -1,5 +1,9 @@
 <?php
 
+namespace GregJPreece\Component\GregsStaffValidator\Administrator\Table;
+
+defined('_JEXEC') or die;
+
 use Joomla\CMS\Table\Table;
 
 /**
@@ -10,13 +14,10 @@ use Joomla\CMS\Table\Table;
  * @license     GNU General Public License version 3; see LICENSE
  */
 
-// No direct access to this file
-defined('_JEXEC') or die('Restricted access');
-
 /**
  * Bog standard database table wrapper for staff validation codes
  */
-class GregsStaffValidatorTableCode extends Table {
+class CodeTable extends Table {
     public function __construct(&$db) {
         parent::__construct('#__gregsstaffvalidator_codes', 'id', $db);
     }

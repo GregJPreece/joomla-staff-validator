@@ -1,5 +1,9 @@
 <?php
 
+namespace GregJPreece\Component\GregsStaffValidator\Administrator\Model;
+
+defined('_JEXEC') or die;
+
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Associations;
 use Joomla\CMS\Language\Text;
@@ -16,13 +20,10 @@ use Joomla\CMS\Table\Table;
  * @license     GNU General Public License version 3; see LICENSE
  */
 
-// No direct access to this file
-defined('_JEXEC') or die('Restricted access');
-
 /**
  * Staff Validator code list Model
  */
-class GregsStaffValidatorModelCodes extends ListModel {
+class CodesModel extends ListModel {
 
     public function __construct($config = []) {
         $config['filter_fields'] = [
@@ -113,8 +114,8 @@ class GregsStaffValidatorModelCodes extends ListModel {
         $this->cleanCache();
 
         return true;
-    }    
-
+    }
+    
     /**
      * Fetches a table object, loads it if it is
      * not already loaded
@@ -124,8 +125,14 @@ class GregsStaffValidatorModelCodes extends ListModel {
      * @param array $config Configuration array for model. Optional.
      * @return Table The loaded table object
      */
-    public function getTable($type = 'Code', $prefix = 'GregsStaffValidatorTable', $config = []) {
-        return Table::getInstance($type, $prefix, $config);    
+    public function getTable($type = 'code', $prefix = '', $config = []) {
+        
+        if ($table = $this->_createTable($type, $prefix, $config)) {
+            return $table;
+        }
+        
+        throw new \Exception(Text::sprintf('JLIB_APPLICATION_ERROR_TABLE_NAME_NOT_SUPPORTED', $name), 0);        
+        
     }
     
     /**

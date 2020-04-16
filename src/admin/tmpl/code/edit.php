@@ -34,8 +34,10 @@ defined('_JEXEC') or die('Restricted access');
             <div class="row-fluid">
                 <div class="span6">
                     <?php 
-                        foreach($this->form->getFieldset() as $field) {
-                            echo $field->renderField();        
+                        if ($this->form) {
+                            foreach($this->form->getFieldset() as $field) {
+                                echo $field->renderField();        
+                            }
                         }
                     ?>
                 </div>

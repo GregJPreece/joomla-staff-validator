@@ -1,6 +1,10 @@
 <?php
 
-use Joomla\CMS\MVC\View\HtmlView;
+namespace GregJPreece\Component\GregsStaffValidator\Administrator\View\Codes;
+
+defined('_JEXEC') or die;
+
+use Joomla\CMS\MVC\View\HtmlView as BaseHtmlView;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Toolbar\ToolbarHelper;
 use Joomla\CMS\Factory;
@@ -13,13 +17,10 @@ use Joomla\CMS\Factory;
  * @license     GNU General Public License version 3; see LICENSE
  */
 
- // No direct access to this file
-defined('_JEXEC') or die('Restricted access');
-
 /**
  * Main Staff Validator Admin View
  */
-class GregsStaffValidatorViewCodes extends HtmlView {
+class HtmlView extends BaseHtmlView {
     
     /**
      * Display the main Staff Validator view
@@ -34,11 +35,13 @@ class GregsStaffValidatorViewCodes extends HtmlView {
         // Get data from the model/state
         $this->items      = $this->get('Items');
         $this->pagination = $this->get('Pagination');
-        $this->sortColumn = $state->get('list.ordering');
-        $this->sortDirection = $state->get('list.direction');
+        $this->sortColumn = ($state) ? $state->get('list.ordering') : null;
+        $this->sortDirection = ($state) ? $state->get('list.direction') : null;
 
         // Check for errors.
-        if (count($errors = $this->get('Errors'))) {
+        $errors = $this->get('Errors');
+        
+        if ($errors && count($errors)) {
             throw new RuntimeException(implode('<br />', $errors), 500);
         }
 

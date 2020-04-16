@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension type="component" version="3.0" method="upgrade">
+<extension type="component" version="4.0" method="upgrade">
 
     <name>Greg's Staff Validator</name>
     <!-- The following elements are optional and free of formatting constraints -->
@@ -9,7 +9,7 @@
     <copyright>Greg J Preece</copyright>
     <license>GPL v3</license>
     <!--  The version string is recorded in the components table -->
-    <version>1.0.2</version>
+    <version>1.1.0</version>
     <!-- The description is optional and defaults to the name -->
     <description>
         A helper component to allow site members to validate their identities when contacting
@@ -40,7 +40,9 @@
             <schemapath type="mysql">sql/updates/mysql</schemapath>
         </schemas>
     </update>
-    
+
+    <namespace>GregJPreece\Component\GregsStaffValidator</namespace>
+            
     <files folder="site/">
         <filename>index.html</filename>
         <filename>gregsstaffvalidator.php</filename>
@@ -61,17 +63,18 @@
         <menu link='index.php?option=com_gregsstaffvalidator'>Greg's Staff Validator</menu>
         <!-- Administration Main File Copy Section -->
         <files folder="admin/">
-            <filename>index.html</filename>
-            <filename>gregsstaffvalidator.php</filename>
-            <filename>controller.php</filename>
+            <folder>Controller</folder>
+            <folder>Model</folder>
+            <folder>Rule</folder>
+            <folder>Table</folder>
+            <folder>View</folder>
+            <folder>forms</folder>
+            <folder>language</folder>
+            <folder>services</folder>
+            <folder>sql</folder>
+            <folder>tmpl</folder>
             <filename>access.xml</filename>
             <filename>config.xml</filename>
-            <folder>controllers</folder>
-            <folder>language</folder>
-            <folder>models</folder>
-            <folder>sql</folder>
-            <folder>tables</folder>
-            <folder>views</folder>
         </files>
 
         <languages>
