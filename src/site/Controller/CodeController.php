@@ -1,5 +1,9 @@
 <?php
 
+namespace GregJPreece\Component\GregsStaffValidator\Site\Controller;
+
+defined('_JEXEC') or die;
+
 use Joomla\CMS\MVC\Controller\FormController;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Uri\Uri;
@@ -17,25 +21,13 @@ use Joomla\CMS\Component\ComponentHelper;
  * @license     GNU General Public License version 3; see LICENSE
  */
 
-defined('_JEXEC') or die('Restricted access');
-
 /**
  * Front-end code-creation controller
  *
  * @package     Joomla.Site
  * @subpackage  com_gregsstaffvalidator
  */
-class GregsStaffValidatorControllerCode extends FormController {
-    
-    public function cancel($key = null) {
-        parent::cancel($key);
-        
-        // set up the redirect back to the same form
-        $this->setRedirect(
-            (string) Uri::getInstance(), 
-            Text::_('COM_GREGSSTAFFVALIDATOR_CREATE_CANCELLED')
-        );
-    }
+class CodeController extends FormController {
     
     /*
      * Function handing the save for adding a new validation code
@@ -139,7 +131,10 @@ class GregsStaffValidatorControllerCode extends FormController {
                     ? Text::_('COM_GREGSSTAFFVALIDATOR_VALIDATE_ERROR') 
                     : $errorTextParam;
             
-            $this->setRedirect(Uri::getInstance(), $errorText, 'error');
+            $this->setRedirect(
+                Route::_('index.php?option=com_gregsstaffvalidator&view=validate'), 
+                $errorText, 'error'
+            );
             return false;
         } else {
             $app->setUserState("$this->option.validate.data", $foundCode);

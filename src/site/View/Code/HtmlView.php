@@ -1,11 +1,15 @@
 <?php
 
-use Joomla\CMS\MVC\View\HtmlView;
-use Joomla\CMS\HTML\HTMLHelper;
+namespace GregJPreece\Component\GregsStaffValidator\Site\View\Code;
+
+defined('_JEXEC') or die;
+
 use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Helper\ContentHelper;
+use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\MVC\View\HtmlView as BaseHtmlView;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
 
@@ -17,9 +21,7 @@ use Joomla\CMS\Uri\Uri;
  * @license     GNU General Public License version 3; see LICENSE
  */
 
-defined('_JEXEC') or die('Restricted access');
-
-class GregsStaffValidatorViewCode extends HtmlView {
+class HtmlView extends BaseHtmlView {
 
     protected $form = null;
 
@@ -35,7 +37,7 @@ class GregsStaffValidatorViewCode extends HtmlView {
 
         $this->form = $this->get('Form');
         $this->script = $this->get('Script');
-        $this->item = $this->get('Item');        
+        $this->item = $this->get('Item');
 
         // Check that the user has permissions to create a new code
         $this->canDo = ContentHelper::getActions('com_gregsstaffvalidator');
@@ -62,7 +64,7 @@ class GregsStaffValidatorViewCode extends HtmlView {
     }
 
     protected function setupDocument() {
-        HTMLHelper::_('behavior.framework');
+        HTMLHelper::_('behavior.core');
         HTMLHelper::_('behavior.formvalidator');
         
         $title = ($this->item->id == 0)

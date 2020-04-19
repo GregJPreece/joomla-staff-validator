@@ -44,13 +44,12 @@
     <namespace>GregJPreece\Component\GregsStaffValidator</namespace>
             
     <files folder="site/">
-        <filename>index.html</filename>
-        <filename>gregsstaffvalidator.php</filename>
-        <filename>controller.php</filename>
-        <folder>controllers</folder>
+        <folder>Controller</folder>
+        <folder>Model</folder>
+        <folder>View</folder>
+        <folder>forms</folder>
         <folder>language</folder>
-        <folder>models</folder>
-        <folder>views</folder>
+        <folder>tmpl</folder>
     </files>
 
     <languages>

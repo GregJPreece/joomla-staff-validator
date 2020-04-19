@@ -1,5 +1,9 @@
 <?php
 
+namespace GregJPreece\Component\GregsStaffValidator\Site\Model;
+
+defined('_JEXEC') or die;
+
 use Joomla\CMS\MVC\Model\AdminModel;
 use Joomla\CMS\Table\Table;
 use Joomla\CMS\Factory;
@@ -12,13 +16,10 @@ use Joomla\CMS\Factory;
  * @license     GNU General Public License version 3; see LICENSE
  */
 
-// No direct access to this file
-defined('_JEXEC') or die('Restricted access');
-
 /**
  * Staff Validator Code Model
  */
-class GregsStaffValidatorModelCode extends AdminModel {
+class CodeModel extends AdminModel {
 
     /**
      * Fetches a table object, loads it if it is
@@ -29,8 +30,12 @@ class GregsStaffValidatorModelCode extends AdminModel {
      * @param array $config Configuration array for model. Optional.
      * @return Table The loaded table object
      */
-    public function getTable($type = 'Code', $prefix = 'GregsStaffValidatorTable', $config = []) {
-        return Table::getInstance($type, $prefix, $config);    
+    public function getTable($type = 'Code', $prefix = '', $config = []) {
+        if ($table = $this->_createTable($type, $prefix, $config)) {
+            return $table;
+        }
+        
+        throw new \Exception(Text::sprintf('JLIB_APPLICATION_ERROR_TABLE_NAME_NOT_SUPPORTED', $name), 0);        
     }
 
     /**
@@ -119,24 +124,21 @@ class GregsStaffValidatorModelCode extends AdminModel {
      * @param GregsStaffValidatorTableCode $table Table to prepare
      */
     protected function prepareTable($table) {
-        $binds = [
-            'user_id' => Factory::getUser()->id            
-        ];
-        
-        $binds['time_updated'] = time();
-        $binds['updated_by'] = Factory::getUser()->get('id', 0);
+        $table->user_id = Factory::getUser()->get('id', 0);
+        $table->time_updated = time();
+        $table->updated_by = Factory::getUser()->get('id', 0);
 
         if (isset($table->time_expires) && !is_numeric($table->time_expires)) {
             $unixTime = strtotime($table->time_expires);
-            $binds['time_expires'] = ($unixTime > 0) ? $unixTime : null;
+            $table->time_expires = ($unixTime > 0) ? $unixTime : null;
+        } else {
+            $table->time_expires = null;
         }
         
         if (empty($table->id)) {
-            $binds['time_generated'] = time();
-            $binds['created_by'] = $binds['updated_by'];
+            $table->time_generated = time();
+            $table->created_by = $table->updated_by;
         }
-        
-        $table->bind($binds);
     }
 
 }

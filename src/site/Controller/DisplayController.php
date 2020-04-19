@@ -1,5 +1,9 @@
 <?php
 
+namespace GregJPreece\Component\GregsStaffValidator\Site\Controller;
+
+defined('_JEXEC') or die;
+
 use Joomla\CMS\MVC\Controller\BaseController;
 use Joomla\CMS\Factory;
 
@@ -11,14 +15,11 @@ use Joomla\CMS\Factory;
  * @license     GNU General Public License version 3; see LICENSE
  */
 
- // No direct access to this file
-defined('_JEXEC') or die('Restricted access');
-
 /**
  * StaffValidator Component Controller
  * @since  0.0.1
  */
-class GregsStaffValidatorController extends BaseController {
+class DisplayController extends BaseController {
     
     public function display($cachable = false, $urlparams = array()) {        
         $document = Factory::getDocument();

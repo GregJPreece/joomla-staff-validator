@@ -1,5 +1,9 @@
 <?php
 
+namespace GregJPreece\Component\GregsStaffValidator\Site\Controller;
+
+defined('_JEXEC') or die;
+
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Log\Log;
 use Joomla\CMS\MVC\Controller\BaseController;
@@ -15,15 +19,13 @@ use Joomla\Utilities\ArrayHelper;
  * @license     GNU General Public License version 3; see LICENSE
  */
 
-defined('_JEXEC') or die('Restricted access');
-
 /**
  * Front-end code-creation controller
  *
  * @package     Joomla.Site
  * @subpackage  com_gregsstaffvalidator
  */
-class GregsStaffValidatorControllerCodes extends BaseController {
+class CodesController extends BaseController {
     
     /**
      * Removes an item.

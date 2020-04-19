@@ -1,10 +1,15 @@
 <?php
 
-use Joomla\CMS\MVC\View\HtmlView;
+namespace GregJPreece\Component\GregsStaffValidator\Site\View\Validate;
+
+defined('_JEXEC') or die;
+
+use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
-use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\MVC\View\HtmlView as BaseHtmlView;
+use Joomla\CMS\Uri\Uri;
 
 /**
  * @package     Joomla.Site
@@ -14,13 +19,11 @@ use Joomla\CMS\Component\ComponentHelper;
  * @license     GNU General Public License version 3; see LICENSE
  */
 
-defined('_JEXEC') or die('Restricted access');
-
 /**
  * View for the user identity validation form
  */
-class GregsStaffValidatorViewValidate extends HtmlView {
-
+class HtmlView extends BaseHtmlView {
+    
     protected $form = null;
 
     protected $canDo;
@@ -57,13 +60,13 @@ class GregsStaffValidatorViewValidate extends HtmlView {
     }
 
     protected function setupDocument() {
-        HTMLHelper::_('behavior.framework');
+        HTMLHelper::_('behavior.core');
         HTMLHelper::_('behavior.formvalidator');
         
         $document = Factory::getDocument();
-        $document->setTitle(JText::_('COM_GREGSSTAFFVALIDATOR_CREATE_TITLE'));
-        $document->addScript(JURI::root() . $this->script);
-        $document->addScript(JURI::root() . "/components/com_gregsstaffvalidator/views/validate/js/submit.js");
+        $document->setTitle(Text::_('COM_GREGSSTAFFVALIDATOR_CREATE_TITLE'));
+        $document->addScript(Uri::root() . $this->script);
+        $document->addScript(Uri::root() . "/components/com_gregsstaffvalidator/views/validate/js/submit.js");
         Text::script('COM_GREGSSTAFFVALIDATOR_CREATE_ERROR_UNACCEPTABLE');
     }
 

@@ -80,8 +80,7 @@ class CodeModel extends AdminModel {
      * Preps the table row data for saving.
      * @param CodeTable $table Table to prepare
      */
-    protected function prepareTable($table) {
-        
+    protected function prepareTable($table) {        
         $table->time_updated = time();
         $table->updated_by = Factory::getUser()->get('id', 0);
 
